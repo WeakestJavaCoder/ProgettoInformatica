@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <style>
+      .top-bar {
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+        min-height: 64px;
+        background: #2a4d69;
+        transition: min-height 0.2s, padding 0.2s;
+      }
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 0;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      .header-center {
+        display: flex;
+        flex: 1 1 0%;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        z-index: 1;
+      }
+      .main-title {
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #fff;
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      .games {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      @media (max-width: 600px) {
+        .top-bar {
+          min-height: 48px;
+          padding-top: 0.4em;
+          padding-bottom: 0.4em;
+        }
+        .main-title {
+          font-size: 1.1rem;
+        }
+      }
+      @media (max-width: 900px) {
+        .games {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <title>Livello</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="header-row">
+        <div class="header-left">
+            <button id="hamburger" class="header-btn">&#9776;</button>
+            <button id="back-btn" class="header-btn" title="Torna alla home" aria-label="Indietro">
+                <span style="font-size:1.5em;">&#8592;</span>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 id="level-title" class="main-title title-common"></h1>
+        </div>
+        <div class="header-right">
+          <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti" style="color:#fff">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6v2a5 5 0 0 0 4 4.9V11h-3v2h8v-2h-3V8.9A5 5 0 0 0 18 4V2zM8 20h8v2H8v-2z"/></svg>
+          </button>
+          <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account" style="color:#fff">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg>
+          </button>
+        </div>
+    </div>
+  </header>
+  <main>
+    <section class="games">
+        <a class="game-box" href="gioco.html?livello=A1&gioco=1">
+            <h2>Gioco 1</h2>
+            <p>Descrizione breve del gioco 1.</p>
+        </a>
+        <a class="game-box" href="gioco.html?livello=A1&gioco=2">
+            <h2>Gioco 2</h2>
+            <p>Descrizione breve del gioco 2.</p>
+        </a>
+        <a class="game-box" href="gioco.html?livello=A1&gioco=3">
+            <h2>Gioco 3</h2>
+            <p>Descrizione breve del gioco 3.</p>
+        </a>
+        <a class="game-box" href="gioco.html?livello=A1&gioco=4">
+            <h2>Gioco 4</h2>
+            <p>Descrizione breve del gioco 4.</p>
+        </a>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <script>
+    // Imposta il titolo del livello in base al parametro passato nell'URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const homeBtn = document.getElementById('home-btn');
+      if (homeBtn) {
+        homeBtn.addEventListener('click', () => {
+          window.location.href = 'index.html';
+        });
+      }
+      const params = new URLSearchParams(window.location.search);
+      const titolo = document.getElementById('level-title');
+      const livello = params.get('livello') || '';
+      if (titolo && livello) {
+        titolo.textContent = `LIVELLO DI DIFFICOLTA: ${livello.toUpperCase()}`;
+      }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', function () {
+            window.location.href = 'index.html';
+        });
+    }
+});
+  </script>
+</body>
+</html>

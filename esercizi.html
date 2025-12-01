@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+        <style>
+          .top-bar {
+            padding-top: 0.7em;
+            padding-bottom: 0.7em;
+            min-height: 64px;
+            background: #2a4d69;
+            transition: min-height 0.2s, padding 0.2s;
+          }
+          .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            min-width: 0;
+          }
+          .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+          }
+          .header-center {
+            display: flex;
+            flex: 1 1 0%;
+            justify-content: center;
+            align-items: center;
+            min-width: 0;
+            z-index: 1;
+          }
+          .main-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 1.6rem;
+            margin: 0;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+          }
+          .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+          }
+          @media (max-width: 600px) {
+            .top-bar {
+              min-height: 48px;
+              padding-top: 0.4em;
+              padding-bottom: 0.4em;
+            }
+            .main-title {
+              font-size: 1.1rem;
+            }
+          }
+        </style>
+      <style>
+        .top-bar {
+          padding-top: 0.7em;
+          padding-bottom: 0.7em;
+          min-height: 64px;
+          background: #2a4d69;
+          transition: min-height 0.2s, padding 0.2s;
+        }
+        @media (max-width: 600px) {
+          .top-bar {
+            min-height: 48px;
+            padding-top: 0.4em;
+            padding-bottom: 0.4em;
+          }
+        }
+      </style>
+    <style>
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 0;
+        background:#2a4d69;
+        padding:0.2em 1em;
+        gap:0.5em;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      .header-center {
+        display: flex;
+        flex: 1 1 0%;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        z-index: 1;
+      }
+      .header-center h1 {
+        font-size: 1.1rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #fff;
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+      @media (max-width: 600px) {
+        .header-center h1 {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <title>Esercizi Svolti</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="header-row">
+        <div class="header-left">
+            <button id="hamburger" class="header-btn">&#9776;</button>
+        </div>
+        <div class="header-center">
+            <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
+        </div>
+        <div class="header-right">
+          <button id="trophy" class="header-btn" title="Esercizi svolti">&#x1F3C6;</button>
+          <button id="user" class="header-btn" title="Accedi/Registrati">&#128100;</button>
+        </div>
+    </div>
+  </header>
+  <main>
+    <section class="esercizi-section" id="esercizi-list">
+      <!-- Qui verranno mostrati gli esercizi svolti -->
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const homeBtn = document.getElementById('home-btn');
+      if (homeBtn) {
+        homeBtn.addEventListener('click', () => {
+          window.location.href = 'index.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
