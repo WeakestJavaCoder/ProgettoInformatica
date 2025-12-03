@@ -1,247 +1,226 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <style>
-        .header-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            min-width: 0;
-            padding: 0 8px;
-            box-sizing: border-box;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 0;
-        }
-        .header-center {
-            flex: 1 1 0%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 0;
-            z-index: 1;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 0;
-        }
-        .main-title {
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 1.6rem;
-            margin: 0;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex: 1 1 0%;
-        }
-        @media (max-width: 600px) {
-            .main-title {
-                font-size: 1.1rem;
-            }
-            .header-row {
-                padding: 0 2px;
-            }
-        }
-      .top-bar {
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
-        min-height: 64px;
-        background: #2a4d69;
-        transition: min-height 0.2s, padding 0.2s;
-      }
-      @media (max-width: 600px) {
-        .top-bar {
-          min-height: 48px;
-          padding-top: 0.4em;
-          padding-bottom: 0.4em;
-        }
-      }
-    </style>
   <meta charset="UTF-8">
-  <title>Gioco</title>
+  <title>Gioco – ORDINA LA FRASE</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .top-bar {
+      padding-top: 0.7em;
+      padding-bottom: 0.7em;
+      min-height: 64px;
+      background: #2a4d69;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 8px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .main-title {
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 1.6rem;
+      margin: 0;
+      text-align: center;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .main-title {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Stile gioco */
+    .exercise {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 16px;
+      background: #fff;
+      border: 2px solid #2563eb33;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.12);
+      text-align: left;
+    }
+    .word-bank span {
+      display: inline-block;
+      background: #eef2ff;
+      border: 1px solid #2563eb;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin: 4px;
+      cursor: grab;
+    }
+    .drop-zone {
+      min-height: 40px;
+      border: 2px dashed #ccc;
+      margin: 8px 0;
+      padding: 6px;
+      min-width: 200px;
+    }
+    .check-btn {
+      margin-top: 8px;
+      background: #2a4d69;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 6px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-<header class="top-bar">
+  <header class="top-bar">
     <div class="header-row">
-        <div class="header-left">
-            <button id="hamburger" class="header-btn">&#9776;</button>
-            <button id="back-btn" class="header-btn" title="Torna ai livelli" aria-label="Indietro" style="margin-left:8px;">
-                <span style="font-size:1.5em;">&#8592;</span>
-            </button>
-        </div>
-            <h1 id="game-title-header" class="main-title title-common">Gioco</h1>
-        <div class="header-right">
-            <button id="trophy" class="header-btn" title="Esercizi svolti">&#x1F3C6;</button>
-            <button id="user" class="header-btn" title="Accedi/Registrati">&#128100;</button>
-        </div>
+      <div class="header-left">
+        <button id="hamburger" class="header-btn">&#9776;</button>
+        <button id="back-btn" class="header-btn" title="Torna ai livelli" aria-label="Indietro">
+          <span style="font-size:1.5em;">&#8592;</span>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Ordina la frase – A1</h1>
+      </div>
+      <div class="header-right"></div>
     </div>
-</header>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Freccia torna ai livelli
-    const backBtn = document.getElementById('back-btn');
-    if (backBtn) {
-        backBtn.addEventListener('click', function () {
-            // Torna alla pagina dei livelli, mantenendo il livello scelto
-            const params = new URLSearchParams(window.location.search);
-            const livello = params.get('livello') || '';
-            window.location.href = livello ? `livello.html?livello=${livello}` : 'livello.html';
-        });
-    }
-    // Titolo dinamico del gioco scelto
-    const params = new URLSearchParams(window.location.search);
-    const gioco = params.get('gioco');
-    const titolo = document.getElementById('game-title-header');
-    if (titolo && gioco) {
-        // Mostra "Gioco 1", "Gioco 2" ecc.
-        let nome = '';
-        if (gioco.match(/^\d+$/)) nome = `Gioco ${gioco}`;
-        else if (gioco.match(/^g(\d)$/i)) nome = `Gioco ${gioco.slice(1)}`;
-        else nome = `Gioco`;
-        titolo.textContent = nome;
-    }
-});
-</script>
+  </header>
 
+  <main style="padding:32px;text-align:center;">
+    <h2>Ordina la frase – A1</h2>
+    <p>Trascina le parole nell’ordine corretto e clicca su "Verifica".</p>
 
-<section id="gamePage" class="page hidden" style="margin-top:12px">
-    <div class="game-view">
-        <div class="game-container card" id="gameContainer">
-            <div class="game-controls">
-                <div>
-                    <h4 id="gameTitle" style="margin:0">Gioco</h4>                
-                </div>
-                <div style="display:flex;gap:8px;align-items:center">
-                    <div class="timer" id="timer">00:00</div>
-                    <button class="btn" id="btn-fullscreen" aria-pressed="false" style="display:flex;align-items:center;gap:4px">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                                    <path d="M1 8V3a2 2 0 0 1 2-2h5a1 1 0 1 1 0 2H3v5a1 1 0 1 1-2 0zm14 0V3a2 2 0 0 0-2-2h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0zm0 8v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5a2 2 0 0 0 2-2zm-14 0v-5a1 1 0 1 1 2 0v5h5a1 1 0 1 1 0 2H3a2 2 0 0 1-2-2z"/>
-                                                </svg>
-                                                Ingrandisci
-                    </button>
-                </div>
-            </div>
-
-            <!-- area di gioco simulata -->
-            <div id="playArea" style="flex:1;display:flex;align-items:center;justify-content:center;margin-top:12px">
-                <div style="width:100%;height:220px;border-radius:8px;border:1px dashed #e6edf3;display:flex;align-items:center;justify-content:center;color:var(--muted)">
-                    Area di gioco (demo)
-                </div>
-            </div>
-        </div>
-
-        <aside class="side-panel" id="sidePanel">
-            <h4 style="margin-top:0; margin-left: 30px;">Altri giochi</h4>
-            <div id="otherGamesList" style="margin-left: 30px; display: flex; flex-direction: row; gap: 16px;">
-                <!-- populated by JS -->
-            </div>
-        </aside>
+    <div class="exercise" data-answer="Io vado a scuola in autobus ogni mattina">
+      <p>(a – vado – scuola – in – autobus – ogni – mattina)</p>
+      <div class="word-bank">
+        <span draggable="true">a</span>
+        <span draggable="true">vado</span>
+        <span draggable="true">scuola</span>
+        <span draggable="true">in</span>
+        <span draggable="true">autobus</span>
+        <span draggable="true">ogni</span>
+        <span draggable="true">mattina</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
     </div>
-</section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Hamburger menu
-        const hamburger = document.getElementById('hamburger');
-        let menu = document.getElementById('menu');
-        if (!menu) {
-            menu = document.createElement('nav');
-            menu.id = 'menu';
-            menu.className = 'menu';
-            menu.style.position = 'absolute';
-            menu.style.top = '64px';
-            menu.style.left = '16px';
-            menu.style.background = '#fff';
-            menu.style.borderRadius = '10px';
-            menu.style.boxShadow = '0 8px 30px rgba(2,6,23,0.08)';
-            menu.style.padding = '8px 0';
-            menu.style.minWidth = '220px';
-            menu.style.display = 'none';
-            menu.innerHTML = `
-                <a href="index.html">Home</a>
-                <a href="livello.html?livello=A1">Tutti i livelli</a>
-                <a href="esercizi.html">Esercizi svolti</a>
-                <a href="chisiamo.html">Informazioni</a>
-            `;
-            document.body.appendChild(menu);
-        }
-        hamburger.addEventListener('click', () => {
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-        });
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-                menu.style.display = 'none';
-            }
-        });
+    <div class="exercise" data-answer="La mia materia preferita è matematica">
+      <p>(preferita – matematica – mia – è – materia)</p>
+      <div class="word-bank">
+        <span draggable="true">preferita</span>
+        <span draggable="true">matematica</span>
+        <span draggable="true">mia</span>
+        <span draggable="true">è</span>
+        <span draggable="true">materia</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
 
-        // Altri giochi
-        const otherGamesList = document.getElementById('otherGamesList');
-        const params = new URLSearchParams(window.location.search);
-        const livello = params.get('livello') || '';
-        const giocoAttuale = params.get('gioco') || '';
-        const games = [
-            { id: '1', title: 'Gioco 1' },
-            { id: '2', title: 'Gioco 2' },
-            { id: '3', title: 'Gioco 3' },
-            { id: '4', title: 'Gioco 4' }
-        ];
-        games.forEach(game => {
-            if (game.id !== giocoAttuale) {
-                const link = document.createElement('a');
-                link.href = `gioco.html?livello=${livello}&gioco=${game.id}`;
-                link.textContent = game.title;
-                link.style.color = 'black';
-                link.style.textDecoration = 'none';
-                link.style.fontWeight = 'bold';
-                link.style.fontSize = '1rem';
-                otherGamesList.appendChild(link);
-            }
-        });
+    <div class="exercise" data-answer="Nel tempo libero ascolto musica">
+      <p>(tempo – libero – ascolto – musica – nel – io)</p>
+      <div class="word-bank">
+        <span draggable="true">tempo</span>
+        <span draggable="true">libero</span>
+        <span draggable="true">ascolto</span>
+        <span draggable="true">musica</span>
+        <span draggable="true">nel</span>
+        <span draggable="true">io</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
 
-        // Fullscreen YouTube style
-        const btnFullscreen = document.getElementById('btn-fullscreen');
-        const gameContainer = document.getElementById('gameContainer');
-        // SVG YouTube style
-        const svgExpand = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 14H5v5h5v-2H7v-3zm0-4h2V7h3V5H7v5zm10 10h-3v2h5v-5h-2v3zm0-14v3h2V3h-5v2h3z" fill="currentColor"/></svg>`;
-        const svgReduce = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 15h2v3h3v2H5v-5zm9-9h3v3h2V5h-5V3zm-9 9v5h5v-2H7v-3H5zm14-4h-2V7h-3V5h5v5z" fill="currentColor"/></svg>`;
-        btnFullscreen.innerHTML = `${svgExpand} Ingrandisci`;
-        btnFullscreen.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                gameContainer.requestFullscreen();
-                btnFullscreen.innerHTML = `${svgReduce} Riduci`;
-            } else {
-                document.exitFullscreen();
-                btnFullscreen.innerHTML = `${svgExpand} Ingrandisci`;
-            }
-        });
-    });
-</script>
+    <div class="exercise" data-answer="Dopo scuola faccio i compiti">
+      <p>(compiti – faccio – dopo – scuola – io)</p>
+      <div class="word-bank">
+        <span draggable="true">compiti</span>
+        <span draggable="true">faccio</span>
+        <span draggable="true">dopo</span>
+        <span draggable="true">scuola</span>
+        <span draggable="true">io</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
 
-<style>
-    @media (max-width: 768px) {
-        .game-view {
-            flex-direction: column;
-        }
+    <div class="exercise" data-answer="Durante la pausa mangio un panino e bevo acqua">
+      <p>(panino – bevo – durante – la – pausa – acqua – e – un – io)</p>
+      <div class="word-bank">
+        <span draggable="true">panino</span>
+        <span draggable="true">bevo</span>
+        <span draggable="true">durante</span>
+        <span draggable="true">la</span>
+        <span draggable="true">pausa</span>
+        <span draggable="true">acqua</span>
+        <span draggable="true">e</span>
+        <span draggable="true">un</span>
+        <span draggable="true">io</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
 
-        .game-container {
-            width: 100%;
-            margin-bottom: 16px;
-        }
+    <div class="exercise" data-answer="Mi piace giocare a calcio con i miei amici">
+      <p>(a – calcio – mi – piace – giocare – con – amici – i)</p>
+      <div class="word-bank">
+        <span draggable="true">a</span>
+        <span draggable="true">calcio</span>
+        <span draggable="true">mi</span>
+        <span draggable="true">piace</span>
+        <span draggable="true">giocare</span>
+        <span draggable="true">con</span>
+        <span draggable="true">amici</span>
+        <span draggable="true">i</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
 
-        .side-panel {
-            width: 100%;
-        }
-    }
-</style>
-</body>
-</html>
+    <div class="exercise" data-answer="Uso spesso il telefono per parlare con i compagni">
+      <p>(telefono – parlo – spesso – io – con – compagni – i – al)</p>
+      <div class="word-bank">
+        <span draggable="true">telefono</span>
+        <span draggable="true">parlo</span>
+        <span draggable="true">spesso</span>
+        <span draggable="true">io</span>
+        <span draggable="true">con</span>
+        <span draggable="true">compagni</span>
+        <span draggable="true">i</span>
+        <span draggable="true">al</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
+
+    <div class="exercise" data-answer="Il fine settimana esco con la mia famiglia o con gli amici">
+      <p>(fine – settimana – esco
