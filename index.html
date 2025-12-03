@@ -18,24 +18,23 @@
       letter-spacing: 2px;
       font-size: 1.6rem;
       margin: 0;
-      flex-grow: 1; /* Permette al titolo di occupare lo spazio disponibile */
-      text-align: center; /* Centra il testo del titolo */
+      flex-grow: 1;
+      text-align: center;
     }
-      /* Riduci padding top-bar */
+    .top-bar {
+      padding-top: 0.7em;
+      padding-bottom: 0.7em;
+      min-height: 64px;
+      background: #2a4d69;
+      transition: min-height 0.2s, padding 0.2s;
+    }
+    @media (max-width: 600px) {
       .top-bar {
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
-        min-height: 64px;
-        background: #2a4d69;
-        transition: min-height 0.2s, padding 0.2s;
+        min-height: 48px;
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
       }
-      @media (max-width: 600px) {
-        .top-bar {
-          min-height: 48px;
-          padding-top: 0.4em;
-          padding-bottom: 0.4em;
-        }
-      }
+    }
     .title-common {
       text-transform: uppercase;
       font-weight: bold;
@@ -58,36 +57,36 @@
       display: flex;
     }
     .levels-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        align-items: center;
-        margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      margin-top: 24px;
     }
     .level-row {
-        display: flex;
-        gap: 32px;
-        justify-content: center;
+      display: flex;
+      gap: 32px;
+      justify-content: center;
     }
     .level-box {
-        background: var(--card);
-        padding: 32px 48px;
-        border-radius: 14px;
-        border: 2px solid #2563eb33;
-        font-size: 2rem;
-        font-weight: 600;
-        color: #2563eb;
-        text-decoration: none;
-        box-shadow: 0 4px 18px rgba(37,99,235,0.08);
-        transition: transform 0.12s, box-shadow 0.12s;
-        margin: 0 8px;
+      background: var(--card);
+      padding: 32px 48px;
+      border-radius: 14px;
+      border: 2px solid #2563eb33;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2563eb;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(37,99,235,0.08);
+      transition: transform 0.12s, box-shadow 0.12s;
+      margin: 0 8px;
     }
     .level-box:hover, .level-box:focus {
-        background: #eef2ff;
-        border-color: var(--accent);
-        transform: translateY(-2px) scale(1.04);
-        box-shadow: 0 8px 24px rgba(37,99,235,0.13);
-        outline: none;
+      background: #eef2ff;
+      border-color: var(--accent);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.13);
+      outline: none;
     }
     .header-row {
       display: flex;
@@ -128,52 +127,56 @@
         font-size: 1.1rem;
       }
     }
-
   </style>
 </head>
 <body>
   <header class="top-bar">
-      <div class="header-row">
-        <div class="header-left">
-          <button id="hamburger" class="header-btn">&#9776;</button>
-        </div>
-        <div class="header-center">
-          <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
-        </div>
-        <div class="header-right">
-          <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti" style="color:#fff">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6v2a5 5 0 0 0 4 4.9V11h-3v2h8v-2h-3V8.9A5 5 0 0 0 18 4V2zM8 20h8v2H8v-2z"/></svg>
-          </button>
-          <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account" style="color:#fff">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg>
-          </button>
-        </div>
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn">&#9776;</button>
       </div>
-    </header>
+      <div class="header-center">
+        <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
+      </div>
+      <div class="header-right">
+        <!-- Coppa stilizzata bianca -->
+        <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2H6v2a5 5 0 0 0 4 4.9V11h-3v2h8v-2h-3V8.9A5 5 0 0 0 18 4V2zM8 20h8v2H8v-2z"/>
+          </svg>
+        </button>
+        <!-- Omino stilizzato bianca -->
+        <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
   <main>
     <section class="description">
       <p class="desc-center">Benvenuto! Seleziona il tuo livello di italiano per iniziare il percorso e migliorare insieme a noi.</p>
     </section>
     <section class="levels">
-        <div class="levels-grid">
-          <div class="level-row">
-            <a class="level-box" href="livello.html?livello=A1">A1</a>
-            <a class="level-box" href="livello.html?livello=A2">A2</a>
-          </div>
-          <div class="level-row">
-            <a class="level-box" href="livello.html?livello=B1">B1</a>
-            <a class="level-box" href="livello.html?livello=B2">B2</a>
-          </div>
-          <div class="level-row">
-            <a class="level-box" href="livello.html?livello=C1">C1</a>
-            <a class="level-box" href="livello.html?livello=C2">C2</a>
-          </div>
+      <div class="levels-grid">
+        <div class="level-row">
+          <a class="level-box" href="livello.html?livello=A1">A1</a>
+          <a class="level-box" href="livello.html?livello=A2">A2</a>
         </div>
+        <div class="level-row">
+          <a class="level-box" href="livello.html?livello=B1">B1</a>
+          <a class="level-box" href="livello.html?livello=B2">B2</a>
+        </div>
+        <div class="level-row">
+          <a class="level-box" href="livello.html?livello=C1">C1</a>
+          <a class="level-box" href="livello.html?livello=C2">C2</a>
+        </div>
+      </div>
     </section>
   </main>
   <script src="script.js"></script>
-<script>
-    // Assicurati che il pulsante della casetta funzioni correttamente
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const homeBtn = document.getElementById('home-btn');
       if (homeBtn) {
@@ -184,4 +187,5 @@
       }
     });
   </script>
+</body>
 </html>
