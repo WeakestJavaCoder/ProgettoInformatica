@@ -102,11 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
     menu.style.display = 'none';
     menu.style.zIndex = '1000';
     menu.innerHTML = `
-      <a href="sfida.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Sfida del giorno</a>
-      <a href="risorse.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Risorse</a>
       <a href="grammatica.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Regole di grammatica</a>
       <a href="lingua.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Lingua dell’interfaccia</a>
-      <a href="funzionalita.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Funzionalità</a>
       <a href="chisiamo.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Chi siamo?</a>
       <a href="supporto.html" class="dropdown-item" style="display:block;padding:10px 32px;cursor:pointer;text-decoration:none;color:#222;">Supporto</a>
     `;
