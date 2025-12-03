@@ -15,6 +15,26 @@
       .top-bar { min-height: 48px; padding-top: 0.4em; padding-bottom: 0.4em; }
       .main-title { font-size: 1.1rem; }
     }
+
+    /* Stile per il box descrizione */
+    .description-box {
+      max-width: 700px;
+      margin: 24px auto;
+      padding: 20px;
+      background: #ffffff;
+      border: 2px solid #2563eb33;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(37,99,235,0.12);
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .description-box h3 {
+      margin-top: 0;
+      color: #2a4d69;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -30,14 +50,59 @@
             <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
         </div>
         <div class="header-right">
-          <button id="trophy" class="header-btn" title="Esercizi svolti">&#x1F3C6;</button>
-          <button id="user" class="header-btn" title="Accedi/Registrati">&#128100;</button>
+          <!-- Coppa stilizzata bianca -->
+          <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2H6v2a5 5 0 0 0 4 4.9V11h-3v2h8v-2h-3V8.9A5 5 0 0 0 18 4V2zM8 20h8v2H8v-2z"/>
+            </svg>
+          </button>
+          <!-- Omino stilizzato bianco -->
+          <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
+            </svg>
+          </button>
         </div>
     </div>
   </header>
   <main style="padding:32px;text-align:center;">
     <h2>Regole di grammatica</h2>
     <p>Qui troverai le principali regole di grammatica italiana.</p>
+
+    <div class="description-box">
+      <h3>Le regole fondamentali</h3>
+      <p><strong>1. Articoli</strong><br>
+      Determinativi: il, lo, la, i, gli, le → indicano qualcosa di preciso.<br>
+      Indeterminativi: un, uno, una → indicano qualcosa di generico.</p>
+
+      <p><strong>2. Nome e genere</strong><br>
+      I nomi hanno genere (maschile/femminile) e numero (singolare/plurale).<br>
+      es. gatto → gatti / casa → case</p>
+
+      <p><strong>3. Aggettivi</strong><br>
+      L’aggettivo si accorda con il nome in genere e numero.<br>
+      es. bella casa, belli gatti</p>
+
+      <p><strong>4. Verbi</strong><br>
+      I verbi cambiano secondo persona e tempo.<br>
+      es. io mangio, tu mangi, noi mangiamo<br>
+      Tempi principali: presente, passato, futuro.</p>
+
+      <p><strong>5. Frase</strong><br>
+      Una frase ha almeno: soggetto + verbo.<br>
+      es. Marco corre.<br>
+      Può avere anche complemento: Marco corre al parco.</p>
+
+      <p><strong>6. Concordanza</strong><br>
+      Soggetto e verbo devono essere coerenti.<br>
+      es. Luca e Anna giocano (non gioca).</p>
+
+      <p><strong>7. Punteggiatura</strong><br>
+      Punto (.) → chiude la frase.<br>
+      Virgola (,) → separa parti della frase.<br>
+      Punto interrogativo (?) → domanda.<br>
+      Punto esclamativo (!) → emozione.</p>
+    </div>
   </main>
   <script src="script.js"></script>
   <script>
