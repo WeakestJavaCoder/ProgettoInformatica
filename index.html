@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Italiano per livelli</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .desc-center {
       text-align: center;
@@ -115,12 +117,36 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: #fff;
     }
     .header-right {
       display: flex;
       align-items: center;
       gap: 12px;
       min-width: 0;
+    }
+    .header-btn {
+      background: none;
+      border: none;
+      font-size: 1.6em;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.3s;
+    }
+    .header-btn:hover {
+      transform: scale(1.2);
+    }
+    /* Colori icone */
+    #trophy {
+      color: #ffd700; /* oro */
+    }
+    #trophy:hover {
+      color: #ffae00;
+    }
+    #user {
+      color: #63ace5; /* blu */
+    }
+    #user:hover {
+      color: #4b86b4;
     }
     @media (max-width: 600px) {
       .header-center h1 {
@@ -133,23 +159,19 @@
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <button id="hamburger" class="header-btn">&#9776;</button>
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
       </div>
       <div class="header-center">
         <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
       </div>
       <div class="header-right">
-        <!-- Coppa stilizzata bianca -->
+        <!-- Trofeo dorato -->
         <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 2H6v2a5 5 0 0 0 4 4.9V11h-3v2h8v-2h-3V8.9A5 5 0 0 0 18 4V2zM8 20h8v2H8v-2z"/>
-          </svg>
+          <i class="fa-solid fa-trophy"></i>
         </button>
-        <!-- Omino stilizzato bianca -->
+        <!-- Profilo blu -->
         <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
-          </svg>
+          <i class="fa-solid fa-user-circle"></i>
         </button>
       </div>
     </div>
