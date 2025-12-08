@@ -3,56 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Gioco – ORDINA LA FRASE</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .top-bar {
-      padding-top: 0.7em;
-      padding-bottom: 0.7em;
-      min-height: 64px;
-      background: #2a4d69;
-    }
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0 8px;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .header-center {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .main-title {
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 2px;
-      font-size: 1.6rem;
-      margin: 0;
-      text-align: center;
-      color: #fff;
-    }
-    @media (max-width: 600px) {
-      .main-title {
-        font-size: 1.1rem;
-      }
-    }
 
-    /* Stile gioco */
+  <!-- Foglio di stile comune -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
     .exercise {
       margin: 20px auto;
-      max-width: 600px;
+      max-width: 700px;
       padding: 16px;
       background: #fff;
       border: 2px solid #2563eb33;
@@ -74,52 +38,55 @@
       border: 2px dashed #ccc;
       margin: 8px 0;
       padding: 6px;
-      min-width: 200px;
+      border-radius: 6px;
+      background: #fafafa;
     }
     .check-btn {
       margin-top: 8px;
       background: #2a4d69;
       color: #fff;
       border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
+      padding: 8px 14px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: 600;
     }
     .result {
       margin-top: 6px;
       font-weight: bold;
     }
+    .result.correct { color: green; }
+    .result.wrong { color: red; }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <button id="hamburger" class="header-btn">&#9776;</button>
-        <button id="back-btn" class="header-btn" title="Torna ai livelli" aria-label="Indietro">
-          <span style="font-size:1.5em;">&#8592;</span>
-        </button>
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
       </div>
       <div class="header-center">
-        <h1 class="main-title">Ordina la frase – A1</h1>
+        <h1 class="main-title">Accademia di Italiano</h1>
       </div>
-      <div class="header-right"></div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi svolti"><i class="fa-solid fa-trophy"></i></button>
+        <button id="user" class="header-btn" title="Accedi/Registrati"><i class="fa-solid fa-user-circle"></i></button>
+      </div>
     </div>
   </header>
 
+  <!-- Contenuto -->
   <main style="padding:32px;text-align:center;">
     <h2>Ordina la frase – A1</h2>
     <p>Trascina le parole nell’ordine corretto e clicca su "Verifica".</p>
 
+    <!-- Gioco 1 -->
     <div class="exercise" data-answer="Io vado a scuola in autobus ogni mattina">
       <p>(a – vado – scuola – in – autobus – ogni – mattina)</p>
       <div class="word-bank">
-        <span draggable="true">a</span>
-        <span draggable="true">vado</span>
-        <span draggable="true">scuola</span>
-        <span draggable="true">in</span>
-        <span draggable="true">autobus</span>
-        <span draggable="true">ogni</span>
+        <span draggable="true">a</span><span draggable="true">vado</span><span draggable="true">scuola</span>
+        <span draggable="true">in</span><span draggable="true">autobus</span><span draggable="true">ogni</span>
         <span draggable="true">mattina</span>
       </div>
       <div class="drop-zone"></div>
@@ -127,100 +94,85 @@
       <p class="result"></p>
     </div>
 
+    <!-- Gioco 2 -->
     <div class="exercise" data-answer="La mia materia preferita è matematica">
       <p>(preferita – matematica – mia – è – materia)</p>
       <div class="word-bank">
-        <span draggable="true">preferita</span>
-        <span draggable="true">matematica</span>
-        <span draggable="true">mia</span>
-        <span draggable="true">è</span>
-        <span draggable="true">materia</span>
+        <span draggable="true">preferita</span><span draggable="true">matematica</span><span draggable="true">mia</span>
+        <span draggable="true">è</span><span draggable="true">materia</span>
       </div>
       <div class="drop-zone"></div>
       <button class="check-btn">Verifica</button>
       <p class="result"></p>
     </div>
 
+    <!-- Gioco 3 -->
     <div class="exercise" data-answer="Nel tempo libero ascolto musica">
       <p>(tempo – libero – ascolto – musica – nel – io)</p>
       <div class="word-bank">
-        <span draggable="true">tempo</span>
-        <span draggable="true">libero</span>
-        <span draggable="true">ascolto</span>
-        <span draggable="true">musica</span>
-        <span draggable="true">nel</span>
-        <span draggable="true">io</span>
+        <span draggable="true">tempo</span><span draggable="true">libero</span><span draggable="true">ascolto</span>
+        <span draggable="true">musica</span><span draggable="true">nel</span><span draggable="true">io</span>
       </div>
       <div class="drop-zone"></div>
       <button class="check-btn">Verifica</button>
       <p class="result"></p>
     </div>
 
-    <div class="exercise" data-answer="Dopo scuola faccio i compiti">
-      <p>(compiti – faccio – dopo – scuola – io)</p>
-      <div class="word-bank">
-        <span draggable="true">compiti</span>
-        <span draggable="true">faccio</span>
-        <span draggable="true">dopo</span>
-        <span draggable="true">scuola</span>
-        <span draggable="true">io</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
-    </div>
-
-    <div class="exercise" data-answer="Durante la pausa mangio un panino e bevo acqua">
-      <p>(panino – bevo – durante – la – pausa – acqua – e – un – io)</p>
-      <div class="word-bank">
-        <span draggable="true">panino</span>
-        <span draggable="true">bevo</span>
-        <span draggable="true">durante</span>
-        <span draggable="true">la</span>
-        <span draggable="true">pausa</span>
-        <span draggable="true">acqua</span>
-        <span draggable="true">e</span>
-        <span draggable="true">un</span>
-        <span draggable="true">io</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
-    </div>
-
+    <!-- Gioco 4 -->
     <div class="exercise" data-answer="Mi piace giocare a calcio con i miei amici">
       <p>(a – calcio – mi – piace – giocare – con – amici – i)</p>
       <div class="word-bank">
-        <span draggable="true">a</span>
-        <span draggable="true">calcio</span>
-        <span draggable="true">mi</span>
-        <span draggable="true">piace</span>
-        <span draggable="true">giocare</span>
-        <span draggable="true">con</span>
-        <span draggable="true">amici</span>
-        <span draggable="true">i</span>
+        <span draggable="true">a</span><span draggable="true">calcio</span><span draggable="true">mi</span>
+        <span draggable="true">piace</span><span draggable="true">giocare</span><span draggable="true">con</span>
+        <span draggable="true">amici</span><span draggable="true">i</span>
       </div>
       <div class="drop-zone"></div>
       <button class="check-btn">Verifica</button>
       <p class="result"></p>
     </div>
+  </main>
 
-    <div class="exercise" data-answer="Uso spesso il telefono per parlare con i compagni">
-      <p>(telefono – parlo – spesso – io – con – compagni – i – al)</p>
-      <div class="word-bank">
-        <span draggable="true">telefono</span>
-        <span draggable="true">parlo</span>
-        <span draggable="true">spesso</span>
-        <span draggable="true">io</span>
-        <span draggable="true">con</span>
-        <span draggable="true">compagni</span>
-        <span draggable="true">i</span>
-        <span draggable="true">al</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
-    </div>
+  <!-- Script drag & drop -->
+  <script>
+    document.querySelectorAll('.exercise').forEach(exercise => {
+      const words = exercise.querySelectorAll('.word-bank span');
+      const dropZone = exercise.querySelector('.drop-zone');
+      const checkBtn = exercise.querySelector('.check-btn');
+      const result = exercise.querySelector('.result');
+      const answer = exercise.dataset.answer;
 
-    <div class="exercise" data-answer="Il fine settimana esco con la mia famiglia o con gli amici">
-      <p>(fine – settimana – esco
+      words.forEach(word => {
+        word.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', word.textContent);
+        });
+      });
+
+      dropZone.addEventListener('dragover', e => {
+        e.preventDefault();
+      });
+
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        const text = e.dataTransfer.getData('text/plain');
+        const span = document.createElement('span');
+        span.textContent = text;
+        span.style.margin = '4px';
+        dropZone.appendChild(span);
+      });
+
+      checkBtn.addEventListener('click', () => {
+        const builtSentence = Array.from(dropZone.querySelectorAll('span'))
+          .map(s => s.textContent)
+          .join(' ');
+        if (builtSentence.trim() === answer.trim()) {
+          result.textContent = "Corretto!";
+          result.className = "result correct";
+        } else {
+          result.textContent = "Sbagliato, riprova.";
+          result.className = "result wrong";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
