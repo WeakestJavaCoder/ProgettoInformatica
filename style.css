@@ -1,203 +1,193 @@
+/* Base */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: #f4f6f9;
   color: #333;
+  line-height: 1.6;
 }
 
 /* Barra superiore */
 .top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: linear-gradient(90deg, #2a4d69, #4b86b4);
   color: #fff;
   padding: 0.7em 1.5em;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
-.top-bar .left, .top-bar .center, .top-bar .right {
+.header-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.top-bar .center {
-  flex: 1;
-  justify-content: center;
+.header-center h1 {
+  font-size: 1.6rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-.top-bar button {
+.header-btn {
   background: none;
   border: none;
-  color: #fff;
   font-size: 1.6em;
-  margin: 0 0.5em;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.3s;
+  color: #fff;
 }
-.top-bar button:hover {
+.header-btn:hover {
   transform: scale(1.2);
 }
 
-/* Menu laterale */
-#side-menu {
-  position: absolute;
-  top: 3.5em;
-  left: 1em;
-  background: #fff;
-  color: #222;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* Icone */
+#trophy {
+  color: #ffd700;
 }
-#side-menu.hidden { display: none; }
-#side-menu a {
-  padding: 0.7em 1.2em;
-  text-decoration: none;
-  color: #2a4d69;
-  font-weight: 500;
-  transition: background 0.2s, color 0.2s;
+#trophy:hover {
+  color: #ffae00;
 }
-#side-menu a:hover {
-  background: #f0f4f8;
+#user {
+  color: #63ace5;
+}
+#user:hover {
   color: #4b86b4;
 }
 
-/* Sezioni descrizione */
+/* Sezione descrizione */
 .description {
   margin: 2em auto 1em auto;
   max-width: 700px;
   text-align: center;
   font-size: 1.2em;
-  line-height: 1.6;
   color: #444;
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.desc-center {
+  margin: 0;
 }
 
 /* Box livelli */
-.levels {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2em;
-}
-.level-box {
-  background: #4b86b4;
-  color: #fff;
-  padding: 2em;
-  border-radius: 12px;
-  width: 140px;
-  text-align: center;
-  font-size: 1.4em;
-  text-decoration: none;
-  transition: transform 0.3s, background 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.level-box:hover {
-  background: #2a4d69;
-  transform: translateY(-5px);
-}
-
-/* Box giochi */
-.games {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2em;
-  margin-top: 2em;
-}
-.game-box {
-  background: #63ace5;
-  color: #fff;
-  padding: 1.8em;
-  border-radius: 12px;
-  width: 220px;
-  text-align: center;
-  text-decoration: none;
-  transition: transform 0.3s, background 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.game-box:hover {
-  background: #4b86b4;
-  transform: translateY(-5px);
-}
-
-/* Container gioco */
-.game-container {
-  position: relative;
-  max-width: 850px;
-  margin: 2em auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 2.5em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-.timer {
-  font-size: 1.2em;
-  margin-bottom: 1em;
-  color: #2a4d69;
-  font-weight: 600;
-}
-#fullscreen-btn {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  font-size: 1.2em;
-  cursor: pointer;
-  color: #4b86b4;
-}
-
-/* Altri giochi */
-.other-games {
-  position: absolute;
-  top: 2em;
-  right: -220px;
-  width: 200px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 1em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-@media (max-width: 900px) {
-  .other-games { display: none; }
-}
-
-/* Login ed esercizi */
-.login-section, .esercizi-section {
-  max-width: 420px;
-  margin: 2em auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 2em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-.login-section form {
+.levels-grid {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
+  gap: 24px;
+  align-items: center;
+  margin-top: 24px;
 }
-.login-section input {
-  margin-bottom: 1em;
-  padding: 0.7em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  transition: border 0.2s;
+.level-row {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
 }
-.login-section input:focus {
-  border: 1px solid #4b86b4;
-  outline: none;
+.level-box {
+  background: linear-gradient(135deg, #4b86b4, #2a4d69);
+  color: #fff;
+  padding: 32px 48px;
+  border-radius: 14px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
 }
-.login-section button {
-  background: linear-gradient(90deg, #2a4d69, #4b86b4);
+.level-box:hover {
+  background: linear-gradient(135deg, #2a4d69, #1e3c5a);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Sezione giochi */
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2em;
+  padding: 2em;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.game-box {
+  background: #fff;
+  color: #333;
+  padding: 2em;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.game-box h2 {
+  margin-bottom: 0.5em;
+  font-size: 1.4rem;
+  color: #2a4d69;
+}
+.game-box p {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Icona decorativa per i giochi */
+.game-box::before {
+  content: "\f1e2"; /* icona puzzle di Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 2.5em;
+  color: #63ace5;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+/* Hover animato */
+.game-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.game-box:hover::before {
+  color: #2563eb;
+  transform: rotate(15deg);
+  transition: transform 0.3s, color 0.3s;
+}
+
+/* Titolo livello */
+#level-title {
+  text-align: center;
+  margin: 1.5em 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2a4d69;
+}
+
+/* Pulsante indietro */
+#back-btn {
+  display: block;
+  margin: 0 auto 1.5em auto;
+  background: #2563eb;
   color: #fff;
   border: none;
-  padding: 0.8em;
+  padding: 0.6em 1.2em;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   transition: background 0.3s, transform 0.2s;
 }
-.login-section button:hover {
-  background: #2a4d69;
+#back-btn:hover {
+  background: #1e40af;
   transform: translateY(-2px);
 }
 
-
+/* Responsive */
+@media (max-width: 600px) {
+  .header-center h1 {
+    font-size: 1.2rem;
+  }
+  .level-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .level-box {
+    width: 80%;
+    text-align: center;
+  }
+}
