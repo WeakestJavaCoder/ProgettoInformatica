@@ -1,25 +1,203 @@
-body { margin: 0; font-family: sans-serif; background: #f7f7f7; }
-.top-bar { display: flex; align-items: center; justify-content: space-between; background: #2a4d69; color: #fff; padding: 0.5em 1em; }
-.top-bar .left, .top-bar .center, .top-bar .right { display: flex; align-items: center; }
-.top-bar .center { flex: 1; justify-content: center; }
-.top-bar button { background: none; border: none; color: #fff; font-size: 1.5em; margin: 0 0.5em; cursor: pointer; }
-#side-menu { position: absolute; top: 3em; left: 1em; background: #fff; color: #222; border: 1px solid #ccc; border-radius: 4px; display: flex; flex-direction: column; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* Barra superiore */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #2a4d69, #4b86b4);
+  color: #fff;
+  padding: 0.7em 1.5em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.top-bar .left, .top-bar .center, .top-bar .right {
+  display: flex;
+  align-items: center;
+}
+.top-bar .center {
+  flex: 1;
+  justify-content: center;
+}
+.top-bar button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6em;
+  margin: 0 0.5em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.top-bar button:hover {
+  transform: scale(1.2);
+}
+
+/* Menu laterale */
+#side-menu {
+  position: absolute;
+  top: 3.5em;
+  left: 1em;
+  background: #fff;
+  color: #222;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 #side-menu.hidden { display: none; }
-#side-menu a { padding: 0.5em 1em; text-decoration: none; color: #222; }
-#side-menu a:hover { background: #eee; }
-.description { margin: 2em auto 1em auto; max-width: 600px; text-align: center; }
-.levels { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; }
-.level-box { background: #4b86b4; color: #fff; padding: 2em; border-radius: 8px; width: 120px; text-align: center; font-size: 1.5em; text-decoration: none; transition: background 0.2s; }
-.level-box:hover { background: #2a4d69; }
-.games { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-top: 2em; }
-.game-box { background: #63ace5; color: #fff; padding: 1.5em; border-radius: 8px; width: 200px; text-align: center; text-decoration: none; transition: background 0.2s; }
-.game-box:hover { background: #4b86b4; }
-.game-container { position: relative; max-width: 800px; margin: 2em auto; background: #fff; border-radius: 8px; padding: 2em; box-shadow: 0 2px 8px #0001; }
-.timer { font-size: 1.2em; margin-bottom: 1em; }
-#fullscreen-btn { position: absolute; top: 1em; right: 1em; font-size: 1.2em; }
-.other-games { position: absolute; top: 2em; right: -220px; width: 200px; background: #eee; border-radius: 8px; padding: 1em; box-shadow: 0 2px 8px #0001; }
-@media (max-width: 900px) { .other-games { display: none; } }
-.login-section, .esercizi-section { max-width: 400px; margin: 2em auto; background: #fff; border-radius: 8px; padding: 2em; box-shadow: 0 2px 8px #0001; }
-.login-section form { display: flex; flex-direction: column; margin-bottom: 2em; }
-.login-section input { margin-bottom: 1em; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; }
-.login-section button { background: #2a4d69; color: #fff; border: none; padding: 0.7em; border-radius: 4px; cursor: pointer; }
+#side-menu a {
+  padding: 0.7em 1.2em;
+  text-decoration: none;
+  color: #2a4d69;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+#side-menu a:hover {
+  background: #f0f4f8;
+  color: #4b86b4;
+}
+
+/* Sezioni descrizione */
+.description {
+  margin: 2em auto 1em auto;
+  max-width: 700px;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Box livelli */
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2em;
+}
+.level-box {
+  background: #4b86b4;
+  color: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  width: 140px;
+  text-align: center;
+  font-size: 1.4em;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.level-box:hover {
+  background: #2a4d69;
+  transform: translateY(-5px);
+}
+
+/* Box giochi */
+.games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2em;
+  margin-top: 2em;
+}
+.game-box {
+  background: #63ace5;
+  color: #fff;
+  padding: 1.8em;
+  border-radius: 12px;
+  width: 220px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.game-box:hover {
+  background: #4b86b4;
+  transform: translateY(-5px);
+}
+
+/* Container gioco */
+.game-container {
+  position: relative;
+  max-width: 850px;
+  margin: 2em auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.timer {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  color: #2a4d69;
+  font-weight: 600;
+}
+#fullscreen-btn {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #4b86b4;
+}
+
+/* Altri giochi */
+.other-games {
+  position: absolute;
+  top: 2em;
+  right: -220px;
+  width: 200px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+@media (max-width: 900px) {
+  .other-games { display: none; }
+}
+
+/* Login ed esercizi */
+.login-section, .esercizi-section {
+  max-width: 420px;
+  margin: 2em auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.login-section form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+.login-section input {
+  margin-bottom: 1em;
+  padding: 0.7em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border 0.2s;
+}
+.login-section input:focus {
+  border: 1px solid #4b86b4;
+  outline: none;
+}
+.login-section button {
+  background: linear-gradient(90deg, #2a4d69, #4b86b4);
+  color: #fff;
+  border: none;
+  padding: 0.8em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+.login-section button:hover {
+  background: #2a4d69;
+  transform: translateY(-2px);
+}
+
+
