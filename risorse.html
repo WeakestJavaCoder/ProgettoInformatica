@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <!-- Foglio di stile comune -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome per le icone -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <meta charset="UTF-8">
   <title>Risorse</title>
   <link rel="stylesheet" href="style.css">
@@ -16,26 +25,24 @@
 <header class="top-bar">
   <div class="header-row">
     <div class="header-left">
-      <button id="hamburger" class="header-btn">&#9776;</button>
-      <button id="back-btn" class="header-btn" title="Torna alla Home" aria-label="Indietro" style="margin-left:8px;">&#8592;</button>
+      <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
     </div>
-    <h1 class="main-title">Risorse</h1>
+    <div class="header-center">
+      <h1 class="main-title">Accademia di Italiano</h1>
+    </div>
     <div class="header-right">
-      <!-- Coppa stilizzata bianca -->
-      <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17 3H7v2H4v4c0 2.2 1.8 4 4 4h.1c.5 2.2 2.4 4 4.9 4s4.4-1.8 4.9-4H16c2.2 0 4-1.8 4-4V5h-3V3zm-5 11c-1.7 0-3-1.3-3-3h6c0 1.7-1.3 3-3 3zm-4 5h8v2H8v-2z"/>
-        </svg>
+      <!-- Trofeo dorato -->
+      <button id="trophy" class="header-btn" title="Esercizi svolti">
+        <i class="fa-solid fa-trophy"></i>
       </button>
-      <!-- Omino stilizzato bianco -->
-      <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/>
-        </svg>
+      <!-- Profilo blu -->
+      <button id="user" class="header-btn" title="Accedi/Registrati">
+        <i class="fa-solid fa-user-circle"></i>
       </button>
     </div>
   </div>
 </header>
+
 <main style="padding:16px">
   <h2>Materiali e risorse</h2>
   <p>Qui puoi inserire link utili, schede, e materiale per lo studio: esercizi, grammatica, fogli di lavoro e collegamenti esterni.</p>
