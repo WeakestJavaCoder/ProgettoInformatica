@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <!-- Foglio di stile comune -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome per le icone -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <meta charset="UTF-8">
   <title>Login / Registrazione</title>
   <link rel="stylesheet" href="style.css">
@@ -208,21 +217,42 @@
 
     // Login
     loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const user = document.getElementById('login-username').value;
-      const pass = document.getElementById('login-password').value;
+    e.preventDefault();
+     const user = document.getElementById('login-username').value;
+     const pass = document.getElementById('login-password').value;
 
-      if (!registeredUser || !registeredPass) {
-        loginMessage.textContent = "Devi registrarti prima di effettuare l'accesso.";
-        return;
-      }
+  if (!registeredUser || !registeredPass) {
+    loginMessage.textContent = "Devi registrarti prima di effettuare l'accesso.";
+    return;
+  }
 
-      if (user === registeredUser && pass === registeredPass) {
-        loginMessage.style.color = "green";
-        loginMessage.textContent = "Accesso effettuato con successo!";
-      } else {
-        loginMessage.style.color = "red";
-        loginMessage.textContent = "Credenziali non valide. Riprova.";
+  if (user === registeredUser && pass === registeredPass) {
+    // ✅ Salva stato login
+    localStorage.setItem('loggedIn', 'true');
+
+    loginMessage.style.color = "green";
+    loginMessage.textContent = "Accesso effettuato con successo!";
+
+    // ✅ Redirect alla home
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1000); // piccolo delay per mostrare il messaggio
+  } else {
+    loginMessage.style.color = "red";
+    loginMessage.textContent = "Credenziali non valide. Riprova.";
+  }
+});
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const userBtn = document.getElementById('user');
+      if (userBtn && userBtn.innerHTML.trim() === '') {
+        userBtn.innerHTML = `
+          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Account">
+            <title>Account</title>
+            <path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v1h16v-1c0-4-4-6-8-6z"/>
+          </svg>
+        `;
       }
     });
   </script>
