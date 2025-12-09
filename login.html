@@ -39,15 +39,7 @@
     }
 
     /* Login box */
-    .login-section {
-      max-width: 400px;
-      margin: 3em auto;
-      background: #fff;
-      border-radius: 8px;
-      padding: 2em;
-      box-shadow: 0 2px 8px #0001;
-      position: relative;
-    }
+   
 
     .login-section form {
       display: flex;
@@ -70,17 +62,32 @@
       cursor: pointer;
     }
 
-    .register-link {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: #2563eb;
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
+    .login-section {
+  max-width: 400px;
+  margin: 3em auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 2em;
+  padding-bottom: 4em;   /* aggiunto spazio extra in basso */
+  box-shadow: 0 2px 8px #0001;
+  position: relative;
+}
+
+.register-link {
+  position: absolute;
+  bottom: 12px;   /* distanza dal fondo del box */
+  right: 12px;    /* distanza dal lato destro */
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+
+
+
 
     /* Modale registrazione */
     .modal {
