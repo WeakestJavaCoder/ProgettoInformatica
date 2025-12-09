@@ -121,6 +121,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const trophyBtn = document.getElementById('trophy');
   const userBtn = document.getElementById('user');
 
+  document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      window.location.href = 'index.html'; 
+      // oppure, se vuoi tornare alla pagina precedente:
+      // window.history.back();
+    });
+  }
+});
+
   if (trophyBtn) {
     trophyBtn.addEventListener('click', function () {
       window.location.href = 'esercizi.html';
