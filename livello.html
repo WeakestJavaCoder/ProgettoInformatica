@@ -53,18 +53,16 @@
       gap: 12px;
     }
 
-    /* Riga del livello: freccia a sinistra e titolo centrato */
     .level-header {
-      position: relative;         /* consente posizionamento assoluto della freccia */
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;    /* centra il contenuto orizzontalmente */
+      justify-content: center;
       margin: 1.2em auto;
       max-width: 900px;
       padding: 0 16px;
-      min-height: 40px;           /* mantiene l’altezza visiva della riga */
+      min-height: 40px;
     }
-    /* Freccia tutta a sinistra, non influisce sul centraggio del titolo */
     #back-btn {
       position: absolute;
       left: 16px;
@@ -84,7 +82,6 @@
       background: #eef2ff;
       transform: translateY(-50%) translateY(-1px);
     }
-    /* Titolo centrato */
     #level-title {
       margin: 0;
       font-size: 1.4rem;
@@ -123,6 +120,19 @@
         gap: 24px;
       }
     }
+    .game-box {
+      display: block;
+      padding: 1.2em;
+      background: #f0f4f8;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #2a4d69;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .game-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
@@ -146,7 +156,6 @@
   </header>
 
   <main>
-    <!-- Riga sotto la top bar: freccia a sinistra + titolo centrato -->
     <div class="level-header">
       <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
         <i class="fa-solid fa-arrow-left"></i>
@@ -154,43 +163,60 @@
       <h2 id="level-title">LIVELLO DI DIFFICOLTÀ: </h2>
     </div>
 
-    <!-- Giochi -->
-    <section class="games">
-      <a class="game-box" href="gioco.html?livello=A1&gioco=1">
-        <h2>Gioco 1</h2>
-        <p>Descrizione breve del gioco 1.</p>
-      </a>
-      <a class="game-box" href="gioco.html?livello=A1&gioco=2">
-        <h2>Gioco 2</h2>
-        <p>Descrizione breve del gioco 2.</p>
-      </a>
-      <a class="game-box" href="gioco.html?livello=A1&gioco=3">
-        <h2>Gioco 3</h2>
-        <p>Descrizione breve del gioco 3.</p>
-      </a>
-      <a class="game-box" href="gioco.html?livello=A1&gioco=4">
-        <h2>Gioco 4</h2>
-        <p>Descrizione breve del gioco 4.</p>
-      </a>
+    <section class="games" id="games-section">
+      <!-- I giochi saranno generati tramite JS -->
     </section>
   </main>
 
-  <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const titolo = document.getElementById('level-title');
       const livello = params.get('livello') || '';
       if (titolo) {
-        titolo.textContent = `LIVELLO DI DIFFICOLTÀ: ${livello ? livello.toUpperCase() : '—'}`;
+        titolo.textContent = `LIVELLO DI DIFFICOLTÀ: ${livello.toUpperCase()}`;
       }
 
       const backBtn = document.getElementById('back-btn');
       if (backBtn) {
         backBtn.addEventListener('click', () => {
           window.location.href = 'index.html';
-          // Oppure: window.history.back();
         });
+      }
+
+      const gamesSection = document.getElementById('games-section');
+
+      // Configurazione dei giochi per livello
+      const giochiDisponibili = {
+        "A1": [
+          {id: 1, titolo: "Gioco 1", descrizione: "Trascina le parole per ricomporre le frasi."}
+        ],
+        "A2": [
+          {id: 1, titolo: "Gioco 1", descrizione: "Gioco degli articoli."}
+        ],
+        "B1": [
+          {id: 1, titolo: "Gioco 1", descrizione: "Gioco B1."}
+        ],
+        "B2": [
+          {id: 1, titolo: "Gioco 1", descrizione: "Gioco B2."}
+        ],
+        "C1": [], // nessun gioco disponibile
+        "C2": [
+          {id: 1, titolo: "Gioco 1", descrizione: "Gioco C2."}
+        ]
+      };
+
+      const giochi = giochiDisponibili[livello.toUpperCase()] || [];
+
+      if (giochi.length === 0) {
+        gamesSection.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#666;">Nessun gioco disponibile per questo livello.</p>`;
+      } else {
+        gamesSection.innerHTML = giochi.map(g => `
+          <a class="game-box" href="gioco.html?livello=${livello}&gioco=${g.id}">
+            <h2>${g.titolo}</h2>
+            <p>${g.descrizione}</p>
+          </a>
+        `).join('');
       }
     });
   </script>
