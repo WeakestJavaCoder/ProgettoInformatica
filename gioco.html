@@ -1,239 +1,285 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Gioco – ORDINA LA FRASE</title>
+<meta charset="UTF-8">
+<title>Gioco</title>
+<style>
+body { margin:0; font-family:sans-serif; background:#f7f7f7; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; background:#2a4d69; color:#fff; padding:0.7em 1em; }
+.top-bar button { background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer; }
 
-  <!-- Foglio di stile comune -->
-  <link rel="stylesheet" href="style.css">
+.game-container { max-width:700px; margin:2em auto; background:#fff; border-radius:12px; padding:25px; box-shadow:0 2px 8px #0001; }
+#question, #questionA2, #questionB2, #questionC2 { font-size:1.5rem; text-align:center; margin-bottom:20px; }
+#answers, #answersA2, #answersB2, #answersC2 { display:flex; flex-direction:column; gap:12px; }
+.answer { padding:14px; background:#63ace5; color:white; border:none; border-radius:10px; font-size:1.2rem; cursor:pointer; }
+.answer:hover { background:#4b86b4; }
 
-  <!-- Font Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+.score, #result, #resultA2, #resultB2, #resultC2 { text-align:center; margin-top:18px; font-size:1.3rem; }
 
-  <!-- Font Awesome per le icone -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    .exercise {
-      margin: 20px auto;
-      max-width: 700px;
-      padding: 16px;
-      background: #fff;
-      border: 2px solid #2563eb33;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(37,99,235,0.12);
-      text-align: left;
-    }
-    .word-bank span {
-      display: inline-block;
-      background: #eef2ff;
-      border: 1px solid #2563eb;
-      border-radius: 6px;
-      padding: 6px 10px;
-      margin: 4px;
-      cursor: grab;
-    }
-    .drop-zone {
-      min-height: 40px;
-      border: 2px dashed #ccc;
-      margin: 8px 0;
-      padding: 6px;
-      border-radius: 6px;
-      background: #fafafa;
-    }
-    .check-btn {
-      margin-top: 8px;
-      background: #2a4d69;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .result {
-      margin-top: 6px;
-      font-weight: bold;
-    }
-    .result.correct { color: green; }
-    .result.wrong { color: red; }
-
-    /* Riga del livello: freccia a sinistra e titolo centrato */
-    .level-header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 1.2em auto;
-      max-width: 900px;
-      padding: 0 16px;
-      min-height: 40px;
-    }
-    #back-btn {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #2a4d69;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 6px 10px;
-      border-radius: 6px;
-      transition: color 0.2s, transform 0.2s, background 0.2s;
-    }
-    #back-btn:hover {
-      color: #1e3a5f;
-      background: #eef2ff;
-      transform: translateY(-50%) translateY(-1px);
-    }
-    #level-title {
-      margin: 0;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #2a4d69;
-      text-align: center;
-    }
-  </style>
+.word-bank span {
+    display: inline-block; background: #eef2ff; border: 1px solid #2563eb; border-radius: 6px; padding: 6px 10px; margin: 4px; cursor: grab;
+}
+.drop-zone { min-height: 40px; border: 2px dashed #ccc; margin: 8px 0; padding: 6px; border-radius: 6px; background: #fafafa; }
+.check-btn, .reset-btn { margin-top: 8px; background: #2a4d69; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-right:5px;}
+.result.correct { color: green; }
+.result.wrong { color: red; }
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="top-bar">
-    <div class="header-row">
-      <div class="header-left">
-        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
-      </div>
-      <div class="header-center">
-        <h1 class="main-title">Accademia di Italiano</h1>
-      </div>
-      <div class="header-right">
-        <button id="trophy" class="header-btn" title="Esercizi svolti"><i class="fa-solid fa-trophy" style="color:#ffd700;"></i></button>
-        <button id="user" class="header-btn" title="Accedi/Registrati"><i class="fa-solid fa-user-circle" style="color:#63ace5;"></i></button>
-      </div>
-    </div>
-  </header>
 
-  
-  <!-- Freccia e titolo centrato -->
-  <div class="level-header">
-<!-- Pulsante freccia -->
-<button id="back-btn" title="Pagina precedente" aria-label="Pagina precedente">
-  <i class="fa-solid fa-arrow-left"></i>
-</button>
+<header class="top-bar">
+    <button id="back-btn">&#8592;</button>
+    <h1 id="pageTitle">Gioco</h1>
+    <div></div>
+</header>
 
-<script>
-  // Quando clicchi la freccia, torni alla pagina precedente
-  document.getElementById('back-btn').addEventListener('click', () => {
-    window.history.back();
-  });
-</script>
-
-
-    <h2 id="level-title">Gioco – ORDINA LA FRASE</h2>
-  </div>
-
-  <!-- Contenuto -->
-  <main style="padding:32px;text-align:center;">
-    <p>Trascina le parole nell’ordine corretto e clicca su "Verifica".</p>
-
-    <!-- Gioco 1 -->
-    <div class="exercise" data-answer="Io vado a scuola in autobus ogni mattina">
-      <p>(a – vado – scuola – in – autobus – ogni – mattina)</p>
-      <div class="word-bank">
-        <span draggable="true">a</span><span draggable="true">vado</span><span draggable="true">scuola</span>
-        <span draggable="true">in</span><span draggable="true">autobus</span><span draggable="true">ogni</span>
-        <span draggable="true">mattina</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
-    </div>
-
-    <!-- Gioco 2 -->
-<div class="exercise" data-answer="La mia materia preferita è matematica">
-  <p>(mia – preferita – è – materia - matematica - la)</p>
-  <div class="word-bank">
-    <span draggable="true">La</span>
-    <span draggable="true">mia</span>
-    <span draggable="true">materia</span>
-    <span draggable="true">preferita</span>
-    <span draggable="true">è</span>
-    <span draggable="true">matematica</span>
-  </div>
-  <div class="drop-zone"></div>
-  <button class="check-btn">Verifica</button>
-  <p class="result"></p>
+<!-- A1 Gioco 1: Trascina parole con 4 frasi -->
+<div class="game-container" id="dragGame" style="display:none;">
+    <h3>Sistema correttamente le seguenti frasi:</h3>
+    <div id="dragExercise"></div>
 </div>
 
-    <!-- Gioco 3 -->
-    <div class="exercise" data-answer="Nel tempo libero ascolto musica">
-      <p>(tempo – libero – ascolto – musica – nel – io)</p>
-      <div class="word-bank">
-        <span draggable="true">tempo</span><span draggable="true">libero</span><span draggable="true">ascolto</span>
-        <span draggable="true">musica</span><span draggable="true">nel</span><span draggable="true">io</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
+<!-- A2 Gioco 1: Articoli -->
+<div class="game-container" id="gameA2" style="display:none;">
+    <h3>Scegli l’articolo corretto</h3>
+    <p id="questionA2"></p>
+    <div id="answersA2">
+        <button class="answer">Il</button>
+        <button class="answer">Lo</button>
+        <button class="answer">La</button>
+        <button class="answer">L’</button>
     </div>
+    <p id="resultA2"></p>
+    <p id="scoreA2" class="score"></p>
+</div>
 
-    <!-- Gioco 4 -->
-    <div class="exercise" data-answer="Mi piace giocare a calcio con i miei amici">
-      <p>(a – calcio – mi – piace – giocare – con – amici – i)</p>
-      <div class="word-bank">
-        <span draggable="true">a</span><span draggable="true">calcio</span><span draggable="true">mi</span>
-        <span draggable="true">piace</span><span draggable="true">giocare</span><span draggable="true">con</span>
-        <span draggable="true">amici</span><span draggable="true">i</span>
-      </div>
-      <div class="drop-zone"></div>
-      <button class="check-btn">Verifica</button>
-      <p class="result"></p>
-    </div>
-  </main>
+<!-- B2 Gioco 1: Trova il sinonimo -->
+<div class="game-container" id="gameB2" style="display:none;">
+    <h3>Trova il sinonimo corretto</h3>
+    <p id="questionB2"></p>
+    <div id="answersB2"></div>
+    <p id="resultB2"></p>
+    <p id="scoreB2" class="score"></p>
+</div>
 
-  <!-- Script drag & drop -->
-  <script>
-    document.querySelectorAll('.exercise').forEach(exercise => {
-      const words = exercise.querySelectorAll('.word-bank span');
-      const dropZone = exercise.querySelector('.drop-zone');
-      const checkBtn = exercise.querySelector('.check-btn');
-      const result = exercise.querySelector('.result');
-      const answer = exercise.dataset.answer;
+<!-- C2 Gioco 1: Individua l'errore -->
+<div class="game-container" id="gameC2" style="display:none;">
+    <h3>Individua l’errore</h3>
+    <p id="questionC2"></p>
+    <div id="answersC2"></div>
+    <p id="resultC2"></p>
+    <p id="scoreC2" class="score"></p>
+</div>
 
-      words.forEach(word => {
-        word.addEventListener('dragstart', e => {
-          e.dataTransfer.setData('text/plain', word.textContent);
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const livello = params.get("livello");
+    const gioco = params.get("gioco");
+    
+    document.getElementById("back-btn").onclick = () => {
+        window.location.href = `livello.html`;
+    };
+
+    document.getElementById("pageTitle").textContent = `Livello ${livello} - Gioco ${gioco}`;
+
+    /* ---------------------- A1 Gioco 1: 4 frasi ---------------- */
+    if(livello==="A1" && gioco==="1"){
+        const container = document.getElementById("dragGame");
+        container.style.display="block";
+
+        const exercises = [
+            { answer: "Io vado a scuola in autobus ogni mattina", words:["in","autobus","mattina","scuola","Io","vado","ogni","a"] },
+            { answer: "Lei mangia la mela rossa", words:["mangia","Lei","rossa","mela","la"] },
+            { answer: "Noi giochiamo a calcio nel parco", words:["parco","calcio","a","giochiamo","nel","Noi"] },
+            { answer: "Voi leggete libri interessanti ogni giorno", words:["leggete","Voi","libri","giorno","ogni","interessanti"] }
+        ];
+
+        const dragExercise = document.getElementById("dragExercise");
+        exercises.forEach((ex, i)=>{
+            const div = document.createElement("div");
+            div.className="exercise";
+            div.dataset.answer = ex.answer;
+            let html = `<p>Frase ${i+1}</p>
+                        <div class="word-bank"></div>
+                        <div class="drop-zone"></div>
+                        <button class="check-btn">Verifica</button>
+                        <button class="reset-btn">Ricomincia</button>
+                        <p class="result"></p>`;
+            div.innerHTML=html;
+            dragExercise.appendChild(div);
+
+            const wordBank = div.querySelector('.word-bank');
+            const dropZone = div.querySelector('.drop-zone');
+            const checkBtn = div.querySelector('.check-btn');
+            const resetBtn = div.querySelector('.reset-btn');
+            const result = div.querySelector('.result');
+
+            // funzione per creare parole
+            function populateWordBank(){
+                wordBank.innerHTML = "";
+                ex.words.forEach(w=>{
+                    const span = document.createElement('span');
+                    span.textContent = w;
+                    span.setAttribute('draggable','true');
+                    span.style.margin='4px';
+                    wordBank.appendChild(span);
+                });
+                makeDraggable();
+            }
+
+            function makeDraggable(){
+                const words = wordBank.querySelectorAll('span');
+                words.forEach(word=>{
+                    word.addEventListener('dragstart', e=> e.dataTransfer.setData('text/plain', word.textContent));
+                });
+            }
+
+            populateWordBank();
+
+            dropZone.addEventListener('dragover', e=>e.preventDefault());
+            dropZone.addEventListener('drop', e=>{
+                e.preventDefault();
+                const text = e.dataTransfer.getData('text/plain');
+                const span = document.createElement('span');
+                span.textContent=text;
+                span.style.margin='4px';
+                dropZone.appendChild(span);
+            });
+
+            checkBtn.addEventListener('click', ()=>{
+                const built = Array.from(dropZone.querySelectorAll('span')).map(s=>s.textContent).join(' ');
+                if(built.trim()===ex.answer.trim()){
+                    result.textContent="Corretto!";
+                    result.className="result correct";
+                } else {
+                    result.textContent="Sbagliato, riprova.";
+                    result.className="result wrong";
+                }
+            });
+
+            resetBtn.addEventListener('click', ()=>{
+                dropZone.innerHTML = "";
+                result.textContent = "";
+                populateWordBank();
+            });
         });
-      });
+    }
 
-      dropZone.addEventListener('dragover', e => {
-        e.preventDefault();
-      });
+    /* ---------------------- A2 Gioco 1 ---------------- */
+    if(livello==="A2" && gioco==="1"){
+        const container = document.getElementById("gameA2");
+        container.style.display="block";
 
-      dropZone.addEventListener('drop', e => {
-        e.preventDefault();
-        const text = e.dataTransfer.getData('text/plain');
-        const span = document.createElement('span');
-        span.textContent = text;
-        span.style.margin = '4px';
-        dropZone.appendChild(span);
-      });
+        const questions = [
+            { word: "___ cane", correct: "Il" },
+            { word: "___ amico", correct: "L’" },
+            { word: "___ scuola", correct: "La" },
+            { word: "___ zaino", correct: "Lo" }
+        ];
+        let index = 0, score = 0;
+        const q = document.getElementById("questionA2");
+        const r = document.getElementById("resultA2");
+        const s = document.getElementById("scoreA2");
+        const buttons = document.querySelectorAll("#answersA2 .answer");
 
-      checkBtn.addEventListener('click', () => {
-        const builtSentence = Array.from(dropZone.querySelectorAll('span'))
-          .map(s => s.textContent)
-          .join(' ');
-        if (builtSentence.trim() === answer.trim()) {
-          result.textContent = "Corretto!";
-          result.className = "result correct";
-        } else {
-          result.textContent = "Sbagliato, riprova.";
-          result.className = "result wrong";
+        function loadQ(){ 
+            q.textContent = questions[index].word;
+            r.textContent=""; 
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            document.getElementById("answersA2").style.display="flex";
         }
-      });
-    });
-  </script>
+        buttons.forEach(btn=>btn.onclick=()=>{
+            if(btn.textContent===questions[index].correct){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
+            else{ r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            setTimeout(()=>{
+                index++; 
+                if(index<questions.length) loadQ();
+                else { q.textContent=`🎉 Hai finito! Punteggio: ${score}/${questions.length}`; document.getElementById("answersA2").style.display="none"; r.textContent=""; s.textContent=""; }
+            },800);
+        });
+        loadQ();
+    }
+
+    /* ---------------------- B2 Gioco 1 ---------------- */
+    if(livello==="B2" && gioco==="1"){
+        const container = document.getElementById("gameB2");
+        container.style.display="block";
+
+        const questions = [
+            { word: "Felice", options: ["Contento","Lento","Pesante","Bello","Ricco"], correct:"Contento"},
+            { word: "Rapido", options:["Veloce","Povero","Stanco","Pesante","Fluido"], correct:"Veloce"},
+            { word: "Pulito", options:["Sporco","Ordinato","Rumoroso","SottoSopra","Umido"], correct:"Ordinato"}
+        ];
+        let index=0, score=0;
+        const q=document.getElementById("questionB2");
+        const a=document.getElementById("answersB2");
+        const r=document.getElementById("resultB2");
+        const s=document.getElementById("scoreB2");
+
+        function loadB2(){
+            q.textContent=`Scegli il sinonimo corretto di: ${questions[index].word}`;
+            a.innerHTML="";
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            questions[index].options.forEach(opt=>{
+                const btn=document.createElement("button");
+                btn.className="answer";
+                btn.textContent=opt;
+                btn.onclick=()=>checkB2(opt);
+                a.appendChild(btn);
+            });
+        }
+
+        function checkB2(value){
+            if(value===questions[index].correct){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
+            else { r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            setTimeout(()=>{
+                index++;
+                if(index<questions.length) loadB2();
+                else{ q.textContent=`🎉 Hai completato il gioco! Punteggio: ${score}/${questions.length}`; a.innerHTML=""; r.textContent=""; s.textContent=""; }
+            },900);
+        }
+        loadB2();
+    }
+
+    /* ---------------------- C2 Gioco 1 ---------------- */
+    if(livello==="C2" && gioco==="1"){
+        const container = document.getElementById("gameC2");
+        container.style.display="block";
+
+        const questions = [
+            { phrase:"Se lo avrei saputo, non sarei venuto.", error:"avessi"},
+            { phrase:"La riunione, che era previsto per ieri, è stata spostata.", error:"prevista"},
+            { phrase:"Lui è uno dei più talentuosi artista del suo corso.", error:"artisti"}
+        ];
+        let index=0, score=0;
+        const q=document.getElementById("questionC2");
+        const a=document.getElementById("answersC2");
+        const r=document.getElementById("resultC2");
+        const s=document.getElementById("scoreC2");
+
+        function loadC2(){
+            q.textContent=`Individua la forma corretta nella frase:\n"${questions[index].phrase}"`;
+            a.innerHTML=`<button class="answer">${questions[index].error}</button><button class="answer">nessun errore</button>`;
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            [...a.children].forEach(btn=>btn.onclick=()=>checkC2(btn.textContent));
+        }
+
+        function checkC2(value){
+            if(value===questions[index].error){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
+            else{ r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+            s.textContent=`Corrette: ${score}/${questions.length}`;
+            setTimeout(()=>{
+                index++;
+                if(index<questions.length) loadC2();
+                else{ q.textContent=`🎉 Ottimo lavoro! Hai concluso il livello avanzato. Punteggio: ${score}/${questions.length}`; a.innerHTML=""; r.textContent=""; s.textContent=""; }
+            },900);
+        }
+        loadC2();
+    }
+});
+</script>
 </body>
 </html>
-
