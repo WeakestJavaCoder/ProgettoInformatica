@@ -57,6 +57,44 @@
     }
     .result.correct { color: green; }
     .result.wrong { color: red; }
+
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -64,21 +102,28 @@
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
       </div>
       <div class="header-center">
         <h1 class="main-title">Accademia di Italiano</h1>
       </div>
       <div class="header-right">
-        <button id="trophy" class="header-btn" title="Esercizi svolti"><i class="fa-solid fa-trophy"></i></button>
-        <button id="user" class="header-btn" title="Accedi/Registrati"><i class="fa-solid fa-user-circle"></i></button>
+        <button id="trophy" class="header-btn" title="Esercizi svolti"><i class="fa-solid fa-trophy" style="color:#ffd700;"></i></button>
+        <button id="user" class="header-btn" title="Accedi/Registrati"><i class="fa-solid fa-user-circle" style="color:#63ace5;"></i></button>
       </div>
     </div>
   </header>
 
+  <!-- Freccia e titolo centrato -->
+  <div class="level-header">
+    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Gioco – ORDINA LA FRASE</h2>
+  </div>
+
   <!-- Contenuto -->
   <main style="padding:32px;text-align:center;">
-    <h2>Ordina la frase – A1</h2>
     <p>Trascina le parole nell’ordine corretto e clicca su "Verifica".</p>
 
     <!-- Gioco 1 -->
