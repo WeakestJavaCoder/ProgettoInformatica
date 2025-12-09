@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const livello = params.get("livello");
     const gioco = params.get("gioco");
     
-    document.getElementById("back-btn").onclick = () => {
-        window.location.href = `livello.html`;
-    };
+    document.getElementById("back-btn").addEventListener("click", () => {
+  window.location.href = `livello.html?livello=${livello}`;
+});
 
     document.getElementById("pageTitle").textContent = `Livello ${livello} - Gioco ${gioco}`;
 
