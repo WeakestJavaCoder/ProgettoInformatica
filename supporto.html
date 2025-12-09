@@ -2,30 +2,67 @@
 <html lang="it">
 <head>
   <!-- Foglio di stile comune -->
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-<!-- Font Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome per le icone -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
   <title>Supporto</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     .top-bar { padding-top: 0.7em; padding-bottom: 0.7em; min-height: 64px; background: #2a4d69; transition: min-height 0.2s, padding 0.2s; }
-    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; min-width: 0; }
-    .header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .header-center { display: flex; flex: 1 1 0%; justify-content: center; align-items: center; min-width: 0; z-index: 1; }
-    .main-title { text-transform: uppercase; font-weight: bold; letter-spacing: 2px; font-size: 1.6rem; margin: 0; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff; }
-    .header-right { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-center { display: flex; flex: 1; justify-content: center; align-items: center; }
+    .main-title { text-transform: uppercase; font-weight: bold; letter-spacing: 2px; font-size: 1.6rem; margin: 0; text-align: center; color: #fff; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
     @media (max-width: 600px) {
       .top-bar { min-height: 48px; padding-top: 0.4em; padding-bottom: 0.4em; }
       .main-title { font-size: 1.1rem; }
     }
 
-    /* Stile per il box descrizione (ripreso da chisiamo.html) */
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
+
+    /* Stile per il box descrizione */
     .description-box {
       max-width: 700px;
       margin: 24px auto;
@@ -48,28 +85,33 @@
 </head>
 <body>
   <header class="top-bar">
-  <div class="header-row">
-    <div class="header-left">
-      <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Accademia di Italiano</h1>
+      </div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi svolti">
+          <i class="fa-solid fa-trophy" style="color:#ffd700;"></i>
+        </button>
+        <button id="user" class="header-btn" title="Accedi/Registrati">
+          <i class="fa-solid fa-user-circle" style="color:#63ace5;"></i>
+        </button>
+      </div>
     </div>
-    <div class="header-center">
-      <h1 class="main-title">Accademia di Italiano</h1>
-    </div>
-    <div class="header-right">
-      <!-- Trofeo dorato -->
-      <button id="trophy" class="header-btn" title="Esercizi svolti">
-        <i class="fa-solid fa-trophy"></i>
-      </button>
-      <!-- Profilo blu -->
-      <button id="user" class="header-btn" title="Accedi/Registrati">
-        <i class="fa-solid fa-user-circle"></i>
-      </button>
-    </div>
+  </header>
+
+  <!-- Freccia e titolo centrato -->
+  <div class="level-header">
+    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Supporto</h2>
   </div>
-</header>
 
   <main style="padding:32px;text-align:center;">
-    <h2>Supporto</h2>
     <p>Hai bisogno di aiuto? Contattaci!</p>
 
     <div class="description-box">
@@ -93,15 +135,16 @@
       </p>
     </div>
   </main>
+
   <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const backBtn = document.getElementById('back-btn');
-        if (backBtn) {
-            backBtn.addEventListener('click', function () {
-                window.location.href = 'index.html';
-            });
-        }
+      const backBtn = document.getElementById('back-btn');
+      if (backBtn) {
+        backBtn.addEventListener('click', function () {
+          window.location.href = 'index.html';
+        });
+      }
     });
   </script>
 </body>
