@@ -2,17 +2,16 @@
 <html lang="it">
 <head>
   <!-- Foglio di stile comune -->
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-<!-- Font Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome per le icone -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
   <title>Esercizi Svolti</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     .top-bar {
       padding-top: 0.7em;
@@ -26,21 +25,17 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      min-width: 0;
     }
     .header-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 0;
     }
     .header-center {
       display: flex;
-      flex: 1 1 0%;
+      flex: 1;
       justify-content: center;
       align-items: center;
-      min-width: 0;
-      z-index: 1;
     }
     .main-title {
       text-transform: uppercase;
@@ -49,16 +44,12 @@
       font-size: 1.6rem;
       margin: 0;
       text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #fff;
     }
     .header-right {
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 0;
     }
     @media (max-width: 600px) {
       .top-bar {
@@ -70,41 +61,88 @@
         font-size: 1.1rem;
       }
     }
+
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <header class="top-bar">
-  <div class="header-row">
-    <div class="header-left">
-      <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Accademia di Italiano</h1>
+      </div>
+      <div class="header-right">
+        <!-- Trofeo dorato -->
+        <button id="trophy" class="header-btn" title="Esercizi svolti">
+          <i class="fa-solid fa-trophy" style="color:#ffd700;"></i>
+        </button>
+        <!-- Profilo blu -->
+        <button id="user" class="header-btn" title="Accedi/Registrati">
+          <i class="fa-solid fa-user-circle" style="color:#63ace5;"></i>
+        </button>
+      </div>
     </div>
-    <div class="header-center">
-      <h1 class="main-title">Accademia di Italiano</h1>
-    </div>
-    <div class="header-right">
-      <!-- Trofeo dorato -->
-      <button id="trophy" class="header-btn" title="Esercizi svolti">
-        <i class="fa-solid fa-trophy"></i>
-      </button>
-      <!-- Profilo blu -->
-      <button id="user" class="header-btn" title="Accedi/Registrati">
-        <i class="fa-solid fa-user-circle"></i>
-      </button>
-    </div>
+  </header>
+
+  <!-- Freccia e titolo centrato -->
+  <div class="level-header">
+    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Esercizi Svolti</h2>
   </div>
-</header>
 
   <main>
     <section class="esercizi-section" id="esercizi-list">
       <!-- Qui verranno mostrati gli esercizi svolti -->
     </section>
   </main>
+
   <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const homeBtn = document.getElementById('home-btn');
-      if (homeBtn) {
-        homeBtn.addEventListener('click', () => {
+      const backBtn = document.getElementById('back-btn');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
           window.location.href = 'index.html';
         });
       }
