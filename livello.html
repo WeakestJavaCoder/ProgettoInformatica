@@ -62,11 +62,12 @@
       max-width: 900px;
       padding: 0 16px;
       min-height: 40px;
+      flex-direction: column; /* per impilare titolo e giochi */
     }
     #back-btn {
       position: absolute;
       left: 16px;
-      top: 50%;
+      top: 10%;
       transform: translateY(-50%);
       background: none;
       border: none;
@@ -83,7 +84,7 @@
       transform: translateY(-50%) translateY(-1px);
     }
     #level-title {
-      margin: 0;
+      margin: 0 0 1em 0;
       font-size: 1.4rem;
       font-weight: 600;
       color: #2a4d69;
@@ -92,12 +93,25 @@
 
     .games {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-      margin: 2em auto;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
       max-width: 900px;
-      padding: 0 16px;
     }
+    .game-box {
+      display: block;
+      padding: 1.2em;
+      background: #f0f4f8;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #2a4d69;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .game-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
     @media (max-width: 600px) {
       .top-bar {
         min-height: 48px;
@@ -113,25 +127,6 @@
       #back-btn {
         left: 12px;
       }
-    }
-    @media (max-width: 900px) {
-      .games {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-    }
-    .game-box {
-      display: block;
-      padding: 1.2em;
-      background: #f0f4f8;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #2a4d69;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .game-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -161,11 +156,12 @@
         <i class="fa-solid fa-arrow-left"></i>
       </button>
       <h2 id="level-title">LIVELLO DI DIFFICOLTÀ: </h2>
-    </div>
 
-    <section class="games" id="games-section">
-      <!-- I giochi saranno generati tramite JS -->
-    </section>
+      <!-- Riquadro giochi subito sotto il titolo -->
+      <section class="games" id="games-section">
+        <!-- I giochi saranno generati tramite JS -->
+      </section>
+    </div>
   </main>
 
   <script>
@@ -189,27 +185,25 @@
       // Configurazione dei giochi per livello
       const giochiDisponibili = {
         "A1": [
-          {id: 1, titolo: "Gioco 1", descrizione: "Trascina le parole per ricomporre le frasi."}
+          {id: 1, titolo: "Gioco", descrizione: "Trascina le parole per ricomporre le frasi."}
         ],
         "A2": [
-          {id: 1, titolo: "Gioco 1", descrizione: "Gioco degli articoli."}
+          {id: 1, titolo: "Gioco", descrizione: "Inserisci l'articolo corretto."}
         ],
-        "B1": [
-          {id: 1, titolo: "Gioco 1", descrizione: "Gioco B1."}
-        ],
+        "B1": [], // nessun gioco disponibile
         "B2": [
-          {id: 1, titolo: "Gioco 1", descrizione: "Gioco B2."}
+          {id: 1, titolo: "Gioco", descrizione: "Trova il sinonimo corretto."}
         ],
         "C1": [], // nessun gioco disponibile
         "C2": [
-          {id: 1, titolo: "Gioco 1", descrizione: "Gioco C2."}
+          {id: 1, titolo: "Gioco", descrizione: "Individua l'errore."}
         ]
       };
 
       const giochi = giochiDisponibili[livello.toUpperCase()] || [];
 
       if (giochi.length === 0) {
-        gamesSection.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#666;">Nessun gioco disponibile per questo livello.</p>`;
+        gamesSection.innerHTML = `<p style="text-align:center; color:#666;">Nessun gioco disponibile per questo livello.</p>`;
       } else {
         gamesSection.innerHTML = giochi.map(g => `
           <a class="game-box" href="gioco.html?livello=${livello}&gioco=${g.id}">
