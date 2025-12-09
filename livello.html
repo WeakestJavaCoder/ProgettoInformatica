@@ -52,12 +52,54 @@
       align-items: center;
       gap: 12px;
     }
+
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;         /* consente posizionamento assoluto della freccia */
+      display: flex;
+      align-items: center;
+      justify-content: center;    /* centra il contenuto orizzontalmente */
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;           /* mantiene l’altezza visiva della riga */
+    }
+    /* Freccia tutta a sinistra, non influisce sul centraggio del titolo */
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    /* Titolo centrato */
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
+
     .games {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
       margin: 2em auto;
       max-width: 900px;
+      padding: 0 16px;
     }
     @media (max-width: 600px) {
       .top-bar {
@@ -68,6 +110,12 @@
       .main-title {
         font-size: 1.1rem;
       }
+      #level-title {
+        font-size: 1.2rem;
+      }
+      #back-btn {
+        left: 12px;
+      }
     }
     @media (max-width: 900px) {
       .games {
@@ -75,61 +123,36 @@
         gap: 24px;
       }
     }
-    /* Titolo livello */
-    #level-title {
-      text-align: center;
-      margin: 1.5em 0;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #2a4d69;
-    }
-    /* Pulsante indietro */
-    #back-btn {
-      display: block;
-      margin: 0 auto 1.5em auto;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      padding: 0.6em 1.2em;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s, transform 0.2s;
-    }
-    #back-btn:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-    }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
       </div>
       <div class="header-center">
         <h1 class="main-title">Accademia di Italiano</h1>
       </div>
       <div class="header-right">
-        <!-- Trofeo dorato -->
         <button id="trophy" class="header-btn" title="Esercizi svolti">
-          <i class="fa-solid fa-trophy"></i>
+          <i class="fa-solid fa-trophy" style="color:#ffd700;"></i>
         </button>
-        <!-- Profilo blu -->
         <button id="user" class="header-btn" title="Accedi/Registrati">
-          <i class="fa-solid fa-user-circle"></i>
+          <i class="fa-solid fa-user-circle" style="color:#63ace5;"></i>
         </button>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Titolo livello dinamico -->
-    <h2 id="level-title"></h2>
-
-    <!-- Pulsante indietro -->
-    <button id="back-btn">← Torna alla Home</button>
+    <!-- Riga sotto la top bar: freccia a sinistra + titolo centrato -->
+    <div class="level-header">
+      <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <h2 id="level-title">LIVELLO DI DIFFICOLTÀ: </h2>
+    </div>
 
     <!-- Giochi -->
     <section class="games">
@@ -158,14 +181,15 @@
       const params = new URLSearchParams(window.location.search);
       const titolo = document.getElementById('level-title');
       const livello = params.get('livello') || '';
-      if (titolo && livello) {
-        titolo.textContent = `LIVELLO DI DIFFICOLTÀ: ${livello.toUpperCase()}`;
+      if (titolo) {
+        titolo.textContent = `LIVELLO DI DIFFICOLTÀ: ${livello ? livello.toUpperCase() : '—'}`;
       }
 
       const backBtn = document.getElementById('back-btn');
       if (backBtn) {
         backBtn.addEventListener('click', () => {
           window.location.href = 'index.html';
+          // Oppure: window.history.back();
         });
       }
     });
