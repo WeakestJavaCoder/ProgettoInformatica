@@ -114,11 +114,22 @@
     </div>
   </header>
 
+  
   <!-- Freccia e titolo centrato -->
   <div class="level-header">
-    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
-      <i class="fa-solid fa-arrow-left"></i>
-    </button>
+<!-- Pulsante freccia -->
+<button id="back-btn" title="Pagina precedente" aria-label="Pagina precedente">
+  <i class="fa-solid fa-arrow-left"></i>
+</button>
+
+<script>
+  // Quando clicchi la freccia, torni alla pagina precedente
+  document.getElementById('back-btn').addEventListener('click', () => {
+    window.history.back();
+  });
+</script>
+
+
     <h2 id="level-title">Gioco – ORDINA LA FRASE</h2>
   </div>
 
@@ -164,23 +175,17 @@
     </div>
 
     <!-- Gioco 4 -->
-<div class="exercise" data-answer="mi piace giocare a calcio con i miei amici">
-  <p>(a – calcio – mi – piace – giocare – con – i – miei – amici)</p>
-  <div class="word-bank">
-    <span draggable="true">a</span>
-    <span draggable="true">calcio</span>
-    <span draggable="true">mi</span>
-    <span draggable="true">piace</span>
-    <span draggable="true">giocare</span>
-    <span draggable="true">con</span>
-    <span draggable="true">i</span>
-    <span draggable="true">miei</span>
-    <span draggable="true">amici</span>
-  </div>
-  <div class="drop-zone"></div>
-  <button class="check-btn">Verifica</button>
-  <p class="result"></p>
-</div>
+    <div class="exercise" data-answer="Mi piace giocare a calcio con i miei amici">
+      <p>(a – calcio – mi – piace – giocare – con – amici – i)</p>
+      <div class="word-bank">
+        <span draggable="true">a</span><span draggable="true">calcio</span><span draggable="true">mi</span>
+        <span draggable="true">piace</span><span draggable="true">giocare</span><span draggable="true">con</span>
+        <span draggable="true">amici</span><span draggable="true">i</span>
+      </div>
+      <div class="drop-zone"></div>
+      <button class="check-btn">Verifica</button>
+      <p class="result"></p>
+    </div>
   </main>
 
   <!-- Script drag & drop -->
@@ -227,4 +232,3 @@
   </script>
 </body>
 </html>
-
