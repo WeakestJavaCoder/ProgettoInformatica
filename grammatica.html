@@ -2,30 +2,65 @@
 <html lang="it">
 <head>
   <!-- Foglio di stile comune -->
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-<!-- Font Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome per le icone -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
   <title>Regole di grammatica</title>
-  <link rel="stylesheet" href="style.css">
   <style>
-    .top-bar { padding-top: 0.7em; padding-bottom: 0.7em; min-height: 64px; background: #2a4d69; transition: min-height 0.2s, padding 0.2s; }
-    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; min-width: 0; }
-    .header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .header-center { display: flex; flex: 1 1 0%; justify-content: center; align-items: center; min-width: 0; z-index: 1; }
-    .main-title { text-transform: uppercase; font-weight: bold; letter-spacing: 2px; font-size: 1.6rem; margin: 0; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff; }
-    .header-right { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .top-bar { padding-top: 0.7em; padding-bottom: 0.7em; min-height: 64px; background: #2a4d69; }
+    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-center { display: flex; flex: 1; justify-content: center; align-items: center; }
+    .main-title { text-transform: uppercase; font-weight: bold; letter-spacing: 2px; font-size: 1.6rem; margin: 0; text-align: center; color: #fff; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
     @media (max-width: 600px) {
       .top-bar { min-height: 48px; padding-top: 0.4em; padding-bottom: 0.4em; }
       .main-title { font-size: 1.1rem; }
     }
 
-    /* Stile per il box descrizione */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
+
     .description-box {
       max-width: 700px;
       margin: 24px auto;
@@ -48,75 +83,103 @@
 </head>
 <body>
   <header class="top-bar">
-  <div class="header-row">
-    <div class="header-left">
-      <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Accademia di Italiano</h1>
+      </div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi svolti">
+          <i class="fa-solid fa-trophy" style="color:#ffd700;"></i>
+        </button>
+        <button id="user" class="header-btn" title="Accedi/Registrati">
+          <i class="fa-solid fa-user-circle" style="color:#63ace5;"></i>
+        </button>
+      </div>
     </div>
-    <div class="header-center">
-      <h1 class="main-title">Accademia di Italiano</h1>
-    </div>
-    <div class="header-right">
-      <!-- Trofeo dorato -->
-      <button id="trophy" class="header-btn" title="Esercizi svolti">
-        <i class="fa-solid fa-trophy"></i>
-      </button>
-      <!-- Profilo blu -->
-      <button id="user" class="header-btn" title="Accedi/Registrati">
-        <i class="fa-solid fa-user-circle"></i>
-      </button>
-    </div>
+  </header>
+
+  <!-- Freccia e titolo centrato -->
+  <div class="level-header">
+    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Regole di grammatica</h2>
   </div>
-</header>
 
   <main style="padding:32px;text-align:center;">
-    <h2>Regole di grammatica</h2>
     <p>Qui troverai le principali regole di grammatica italiana.</p>
 
     <div class="description-box">
       <h3>Le regole fondamentali</h3>
-      <p><strong>1. Articoli</strong><br>
-      Determinativi: il, lo, la, i, gli, le → indicano qualcosa di preciso.<br>
-      Indeterminativi: un, uno, una → indicano qualcosa di generico.</p>
 
-      <p><strong>2. Nome e genere</strong><br>
-      I nomi hanno genere (maschile/femminile) e numero (singolare/plurale).<br>
-      es. gatto → gatti / casa → case</p>
+      <p><strong>1. Articoli</strong><br>
+      Gli articoli determinano se il sostantivo è conosciuto o generico.<br>
+      <em>Determinativi:</em> il, lo, la, i, gli, le<br>
+      <em>Indeterminativi:</em> un, uno, una, un'</p>
+
+      <p><strong>2. Sostantivi</strong><br>
+      Indicano persone, cose, animali, idee.<br>
+      Maschili: ragazzo, libro<br>
+      Femminili: ragazza, casa<br>
+      Plurali: ragazzi, case</p>
 
       <p><strong>3. Aggettivi</strong><br>
-      L’aggettivo si accorda con il nome in genere e numero.<br>
-      es. bella casa, belli gatti</p>
+      Qualificano i sostantivi e concordano in genere e numero.<br>
+      Esempi: il ragazzo alto, la ragazza alta, i ragazzi alti, le ragazze alte</p>
 
       <p><strong>4. Verbi</strong><br>
-      I verbi cambiano secondo persona e tempo.<br>
-      es. io mangio, tu mangi, noi mangiamo<br>
-      Tempi principali: presente, passato, futuro.</p>
+      Indicano azioni o stati e si coniugano in base a tempo, modo, persona.<br>
+      Parlare: io parlo, tu parli, lui/lei parla<br>
+      Essere: io sono, tu sei, lui/lei è<br>
+      Avere: io ho, tu hai, lui/lei ha</p>
 
-      <p><strong>5. Frase</strong><br>
-      Una frase ha almeno: soggetto + verbo.<br>
-      es. Marco corre.<br>
-      Può avere anche complemento: Marco corre al parco.</p>
+      <p><strong>5. Pronomi</strong><br>
+      Sostituiscono i sostantivi.<br>
+      Personali: io, tu, lui/lei, noi, voi, loro<br>
+      Possessivi: mio, tuo, suo, nostro, vostro, loro<br>
+      Diretti: mi, ti, lo, la, ci, vi, li, le<br>
+      Indiretti: mi, ti, gli, le, ci, vi</p>
 
-      <p><strong>6. Concordanza</strong><br>
-      Soggetto e verbo devono essere coerenti.<br>
-      es. Luca e Anna giocano (non gioca).</p>
+      <p><strong>6. Preposizioni</strong><br>
+      Collegano parole e indicano relazioni.<br>
+      Semplici: di, a, da, in, con, su, per, tra, fra<br>
+      Articolate: del, della, al, alla, nel, nella</p>
 
-      <p><strong>7. Punteggiatura</strong><br>
-      Punto (.) → chiude la frase.<br>
-      Virgola (,) → separa parti della frase.<br>
-      Punto interrogativo (?) → domanda.<br>
-      Punto esclamativo (!) → emozione.</p>
+      <p><strong>7. Congiunzioni</strong><br>
+      Collegano frasi o parole.<br>
+      Coordinative: e, ma, oppure, quindi<br>
+      Subordinative: che, perché, se, quando, mentre</p>
+
+      <p><strong>8. Interrogativi</strong><br>
+      Parole usate per fare domande: chi, cosa, dove, quando, perché</p>
+
+      <p><strong>9. Frasi Negative</strong><br>
+      Si usa "non".<br>
+      Esempio: Non mangio la pizza.</p>
+
+      <p><strong>10. Accenti e Apostrofi</strong><br>
+      L'accento cambia significato: è (verbo essere) vs e (congiunzione).<br>
+      Apostrofo: l’amico (invece di lo amico).</p>
+
+      <p><strong>11. Ordine delle Parole</strong><br>
+      Generalmente: Soggetto + Verbo + Complemento.<br>
+      Esempio: Io mangio una mela.</p>
     </div>
   </main>
+
   <script src="script.js"></script>
   <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const backBtn = document.getElementById('back-btn');
-    if (backBtn) {
+    document.addEventListener('DOMContentLoaded', function () {
+      const backBtn = document.getElementById('back-btn');
+      if (backBtn) {
         backBtn.addEventListener('click', function () {
-            window.location.href = 'index.html';
+          window.location.href = 'index.html';
         });
-    }
-});
-</script>
+      }
+    });
+  </script>
 </body>
 </html>
