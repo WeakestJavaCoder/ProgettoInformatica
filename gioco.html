@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const gioco = params.get("gioco");
     
     document.getElementById("back-btn").addEventListener("click", () => {
-  window.location.href = `livello.html?livello=${livello}`;
-});
+        window.location.href = `livello.html?livello=${livello}`;
+    });
 
     document.getElementById("pageTitle").textContent = `Livello ${livello} - Gioco ${gioco}`;
 
@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const resetBtn = div.querySelector('.reset-btn');
             const result = div.querySelector('.result');
 
-            // funzione per creare parole
             function populateWordBank(){
                 wordBank.innerHTML = "";
                 ex.words.forEach(w=>{
@@ -141,9 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
             dropZone.addEventListener('drop', e=>{
                 e.preventDefault();
                 const text = e.dataTransfer.getData('text/plain');
+                const original = [...wordBank.querySelectorAll("span")]
+                    .find(s => s.textContent === text);
+
+                if (original) original.remove();
+
                 const span = document.createElement('span');
-                span.textContent=text;
-                span.style.margin='4px';
+                span.textContent = text;
+                span.style.margin = '4px';
                 dropZone.appendChild(span);
             });
 
@@ -183,22 +187,40 @@ document.addEventListener("DOMContentLoaded", () => {
         const s = document.getElementById("scoreA2");
         const buttons = document.querySelectorAll("#answersA2 .answer");
 
+        function disableButtonsA2(disable){
+            buttons.forEach(btn => btn.disabled = disable);
+        }
+
         function loadQ(){ 
             q.textContent = questions[index].word;
             r.textContent=""; 
             s.textContent=`Corrette: ${score}/${questions.length}`;
-            document.getElementById("answersA2").style.display="flex";
+            disableButtonsA2(false);
         }
-        buttons.forEach(btn=>btn.onclick=()=>{
-            if(btn.textContent===questions[index].correct){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
-            else{ r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+
+        buttons.forEach(btn => btn.onclick = () => {
+            disableButtonsA2(true);
+
+            if(btn.textContent===questions[index].correct){
+                score++; r.textContent="✔️ Corretto!"; r.style.color="green";
+            } else {
+                r.textContent="❌ Sbagliato!"; r.style.color="red";
+            }
+
             s.textContent=`Corrette: ${score}/${questions.length}`;
+
             setTimeout(()=>{
                 index++; 
-                if(index<questions.length) loadQ();
-                else { q.textContent=`🎉 Hai finito! Punteggio: ${score}/${questions.length}`; document.getElementById("answersA2").style.display="none"; r.textContent=""; s.textContent=""; }
+                if(index<questions.length){
+                    loadQ();
+                } else {
+                    q.textContent=`🎉 Hai finito! Punteggio: ${score}/${questions.length}`;
+                    document.getElementById("answersA2").style.display="none";
+                    r.textContent=""; s.textContent="";
+                }
             },800);
         });
+
         loadQ();
     }
 
@@ -218,6 +240,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const r=document.getElementById("resultB2");
         const s=document.getElementById("scoreB2");
 
+        function disableButtonsB2(disable){
+            [...a.querySelectorAll(".answer")].forEach(btn => btn.disabled = disable);
+        }
+
         function loadB2(){
             q.textContent=`Scegli il sinonimo corretto di: ${questions[index].word}`;
             a.innerHTML="";
@@ -232,15 +258,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function checkB2(value){
-            if(value===questions[index].correct){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
-            else { r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+            disableButtonsB2(true);
+
+            if(value===questions[index].correct){
+                score++; r.textContent="✔️ Corretto!"; r.style.color="green";
+            } else {
+                r.textContent="❌ Sbagliato!"; r.style.color="red";
+            }
+
             s.textContent=`Corrette: ${score}/${questions.length}`;
+
             setTimeout(()=>{
                 index++;
-                if(index<questions.length) loadB2();
-                else{ q.textContent=`🎉 Hai completato il gioco! Punteggio: ${score}/${questions.length}`; a.innerHTML=""; r.textContent=""; s.textContent=""; }
+                if(index<questions.length){
+                    loadB2();
+                } else {
+                    q.textContent=`🎉 Hai completato il gioco! Punteggio: ${score}/${questions.length}`;
+                    a.innerHTML=""; r.textContent=""; s.textContent="";
+                }
             },900);
         }
+
         loadB2();
     }
 
@@ -260,23 +298,39 @@ document.addEventListener("DOMContentLoaded", () => {
         const r=document.getElementById("resultC2");
         const s=document.getElementById("scoreC2");
 
+        function disableButtonsC2(disable){
+            [...a.querySelectorAll(".answer")].forEach(btn => btn.disabled = disable);
+        }
+
         function loadC2(){
             q.textContent=`Individua la forma corretta nella frase:\n"${questions[index].phrase}"`;
             a.innerHTML=`<button class="answer">${questions[index].error}</button><button class="answer">nessun errore</button>`;
             s.textContent=`Corrette: ${score}/${questions.length}`;
-            [...a.children].forEach(btn=>btn.onclick=()=>checkC2(btn.textContent));
+            [...a.children].forEach(btn => btn.onclick=()=>checkC2(btn.textContent));
         }
 
         function checkC2(value){
-            if(value===questions[index].error){ score++; r.textContent="✔️ Corretto!"; r.style.color="green"; }
-            else{ r.textContent="❌ Sbagliato!"; r.style.color="red"; }
+            disableButtonsC2(true);
+
+            if(value===questions[index].error){ 
+                score++; r.textContent="✔️ Corretto!"; r.style.color="green";
+            } else {
+                r.textContent="❌ Sbagliato!"; r.style.color="red";
+            }
+
             s.textContent=`Corrette: ${score}/${questions.length}`;
+
             setTimeout(()=>{
                 index++;
-                if(index<questions.length) loadC2();
-                else{ q.textContent=`🎉 Ottimo lavoro! Hai concluso il livello avanzato. Punteggio: ${score}/${questions.length}`; a.innerHTML=""; r.textContent=""; s.textContent=""; }
+                if(index<questions.length){
+                    loadC2();
+                } else {
+                    q.textContent=`🎉 Ottimo lavoro! Hai concluso il livello avanzato. Punteggio: ${score}/${questions.length}`;
+                    a.innerHTML=""; r.textContent=""; s.textContent="";
+                }
             },900);
         }
+
         loadC2();
     }
 });
