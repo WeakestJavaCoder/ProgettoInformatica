@@ -10,7 +10,6 @@
 <!-- Font Awesome per le icone -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
   <meta charset="UTF-8">
   <title>Login / Registrazione</title>
   <link rel="stylesheet" href="style.css">
@@ -26,21 +25,30 @@
     .header-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start; /* allinea a sinistra */
       width: 100%;
       background: #2a4d69;
       padding: 0.2em 1em;
     }
 
-    .header-center h1 {
-      font-size: 1.1rem;
-      margin: 0;
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .back-arrow {
       color: #fff;
+      font-size: 1.2rem;
+      text-decoration: none;
+      margin-right: 1em;
+      transition: color 0.2s ease;
+    }
+
+    .back-arrow:hover {
+      color: #d1d5db;
     }
 
     /* Login box */
-   
-
     .login-section form {
       display: flex;
       flex-direction: column;
@@ -63,31 +71,27 @@
     }
 
     .login-section {
-  max-width: 400px;
-  margin: 3em auto;
-  background: #fff;
-  border-radius: 8px;
-  padding: 2em;
-  padding-bottom: 4em;   /* aggiunto spazio extra in basso */
-  box-shadow: 0 2px 8px #0001;
-  position: relative;
-}
+      max-width: 400px;
+      margin: 3em auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2em;
+      padding-bottom: 4em;
+      box-shadow: 0 2px 8px #0001;
+      position: relative;
+    }
 
-.register-link {
-  position: absolute;
-  bottom: 12px;   /* distanza dal fondo del box */
-  right: 12px;    /* distanza dal lato destro */
-  background: #2563eb;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-
-
-
+    .register-link {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: #2563eb;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
 
     /* Modale registrazione */
     .modal {
@@ -160,8 +164,10 @@
 <body>
   <header class="top-bar">
     <div class="header-row">
-      <div class="header-center">
-        <h1>Accedi</h1>
+      <div class="header-left">
+        <a href="javascript:history.back()" class="back-arrow">
+          <i class="fas fa-arrow-left"></i>
+        </a>
       </div>
     </div>
   </header>
@@ -225,42 +231,25 @@
 
     // Login
     loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-     const user = document.getElementById('login-username').value;
-     const pass = document.getElementById('login-password').value;
+      e.preventDefault();
+      const user = document.getElementById('login-username').value;
+      const pass = document.getElementById('login-password').value;
 
-  if (!registeredUser || !registeredPass) {
-    loginMessage.textContent = "Devi registrarti prima di effettuare l'accesso.";
-    return;
-  }
+      if (!registeredUser || !registeredPass) {
+        loginMessage.textContent = "Devi registrarti prima di effettuare l'accesso.";
+        return;
+      }
 
-  if (user === registeredUser && pass === registeredPass) {
-    // ✅ Salva stato login
-    localStorage.setItem('loggedIn', 'true');
-
-    loginMessage.style.color = "green";
-    loginMessage.textContent = "Accesso effettuato con successo!";
-
-    // ✅ Redirect alla home
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1000); // piccolo delay per mostrare il messaggio
-  } else {
-    loginMessage.style.color = "red";
-    loginMessage.textContent = "Credenziali non valide. Riprova.";
-  }
-});
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const userBtn = document.getElementById('user');
-      if (userBtn && userBtn.innerHTML.trim() === '') {
-        userBtn.innerHTML = `
-          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Account">
-            <title>Account</title>
-            <path fill="currentColor" d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 6v1h16v-1c0-4-4-6-8-6z"/>
-          </svg>
-        `;
+      if (user === registeredUser && pass === registeredPass) {
+        localStorage.setItem('loggedIn', 'true');
+        loginMessage.style.color = "green";
+        loginMessage.textContent = "Accesso effettuato con successo!";
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1000);
+      } else {
+        loginMessage.style.color = "red";
+        loginMessage.textContent = "Credenziali non valide. Riprova.";
       }
     });
   </script>
