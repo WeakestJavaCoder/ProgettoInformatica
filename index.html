@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Italiano per livelli</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome per le icone -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .desc-center {
@@ -71,21 +70,24 @@
       justify-content: center;
     }
     .level-box {
-      background: var(--card);
+      background: #ffffff;
       padding: 32px 48px;
       border-radius: 14px;
       border: 2px solid #2563eb33;
-      font-size: 2rem;
-      font-weight: 600;
+      font-size: 2.5rem; /* Aumentato per le icone */
       color: #2563eb;
       text-decoration: none;
       box-shadow: 0 4px 18px rgba(37,99,235,0.08);
       transition: transform 0.12s, box-shadow 0.12s;
       margin: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px; /* Larghezza minima per uniformità */
     }
     .level-box:hover, .level-box:focus {
       background: #eef2ff;
-      border-color: var(--accent);
+      border-color: #2563eb;
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 8px 24px rgba(37,99,235,0.13);
       outline: none;
@@ -135,23 +137,13 @@
     .header-btn:hover {
       transform: scale(1.2);
     }
-    /* Colori icone */
-    #trophy {
-      color: #ffd700; /* oro */
-    }
-    #trophy:hover {
-      color: #ffae00;
-    }
-    #user {
-      color: #63ace5; /* blu */
-    }
-    #user:hover {
-      color: #4b86b4;
-    }
+    #trophy { color: #ffd700; }
+    #trophy:hover { color: #ffae00; }
+    #user { color: #63ace5; }
+    #user:hover { color: #4b86b4; }
     @media (max-width: 600px) {
-      .header-center h1 {
-        font-size: 1.1rem;
-      }
+      .header-center h1 { font-size: 1.1rem; }
+      .level-box { padding: 24px 36px; min-width: 100px; }
     }
   </style>
 </head>
@@ -165,11 +157,9 @@
         <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
       </div>
       <div class="header-right">
-        <!-- Trofeo dorato -->
         <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
           <i class="fa-solid fa-trophy"></i>
         </button>
-        <!-- Profilo blu -->
         <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
           <i class="fa-solid fa-user-circle"></i>
         </button>
@@ -178,36 +168,37 @@
   </header>
   <main>
     <section class="description">
-      <p class="desc-center">Benvenuto! Seleziona il tuo livello di italiano per iniziare il percorso e migliorare insieme a noi.</p>
+      <p class="desc-center">Benvenuto! Seleziona una materia per iniziare il tuo percorso di insieme a noi.</p>
     </section>
     <section class="levels">
       <div class="levels-grid">
         <div class="level-row">
-          <a class="level-box" href="livello.html?livello=A1">A1</a>
-          <a class="level-box" href="livello.html?livello=A2">A2</a>
+          <a class="level-box" href="livello.html?livello=A1" title="Geografia">
+            <i class="fa-solid fa-earth-americas"></i>
+          </a>
+          <a class="level-box" href="livello.html?livello=A2" title="Matematica">
+            <i class="fa-solid fa-calculator"></i>
+          </a>
         </div>
         <div class="level-row">
-          <a class="level-box" href="livello.html?livello=B1">B1</a>
-          <a class="level-box" href="livello.html?livello=B2">B2</a>
+          <a class="level-box" href="livello.html?livello=B1" title="Scienza">
+            <i class="fa-solid fa-atom"></i>
+          </a>
+          <a class="level-box" href="livello.html?livello=B2" title="Italia">
+            <i class="fa-solid fa-flag"></i>
+          </a>
         </div>
         <div class="level-row">
-          <a class="level-box" href="livello.html?livello=C1">C1</a>
-          <a class="level-box" href="livello.html?livello=C2">C2</a>
+          <a class="level-box" href="livello.html?livello=C1" title="Storia">
+            <i class="fa-solid fa-landmark"></i>
+          </a>
+          <a class="level-box" href="livello.html?livello=C2" title="Tecnologia">
+            <i class="fa-solid fa-desktop"></i>
+          </a>
         </div>
       </div>
     </section>
   </main>
   <script src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const homeBtn = document.getElementById('home-btn');
-      if (homeBtn) {
-        homeBtn.classList.add('visible');
-        homeBtn.addEventListener('click', () => {
-          window.location.href = 'index.html';
-        });
-      }
-    });
-  </script>
 </body>
 </html>
