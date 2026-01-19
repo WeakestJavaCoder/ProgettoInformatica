@@ -4,13 +4,10 @@
   <meta charset="UTF-8">
   <title>Livello</title>
 
-  <!-- Foglio di stile comune -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Font Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome per le icone -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -87,8 +84,9 @@
       margin: 0 0 1em 0;
       font-size: 1.4rem;
       font-weight: 600;
-      color: #2a4d69;
+      color: #2563eb; /* Colore blu del gioco */
       text-align: center;
+      text-transform: uppercase;
     }
 
     .games {
@@ -155,11 +153,9 @@
       <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
-      <h2 id="level-title">LIVELLO DI DIFFICOLTÀ: </h2>
+      <h2 id="level-title">MATERIA SCELTA: </h2>
 
-      <!-- Riquadro giochi subito sotto il titolo -->
       <section class="games" id="games-section">
-        <!-- I giochi saranno generati tramite JS -->
       </section>
     </div>
   </main>
@@ -167,10 +163,28 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const titolo = document.getElementById('level-title');
+      const titoloElement = document.getElementById('level-title');
       const livello = params.get('livello') || '';
-      if (titolo) {
-        titolo.textContent = `LIVELLO DI DIFFICOLTÀ: ${livello.toUpperCase()}`;
+
+      // Mappa per trasformare il codice in nome materia
+      const nomiMaterie = {
+        "A1": "GEOGRAFIA",
+        "A2": "MATEMATICA",
+        "BIOLOGIA": "BIOLOGIA",
+        "B1": "SCIENZA",
+        "B2": "ITALIA",
+        "C1": "STORIA",
+        "C2": "TECNOLOGIA",
+        "INGLESE": "INGLESE",
+        "CHIMICA": "CHIMICA",
+        "FISICA": "FISICA"
+      };
+
+      const materiaNome = nomiMaterie[livello.toUpperCase()] || livello.toUpperCase();
+
+      if (titoloElement) {
+        // Applica la modifica richiesta
+        titoloElement.textContent = `MATERIA SCELTA: ${materiaNome}`;
       }
 
       const backBtn = document.getElementById('back-btn');
@@ -182,28 +196,20 @@
 
       const gamesSection = document.getElementById('games-section');
 
-      // Configurazione dei giochi per livello
+      // Configurazione originale dei giochi
       const giochiDisponibili = {
-        "A1": [
-          {id: 1, titolo: "Gioco", descrizione: "Trascina le parole per ricomporre le frasi."}
-        ],
-        "A2": [
-          {id: 1, titolo: "Gioco", descrizione: "Inserisci l'articolo corretto."}
-        ],
-        "B1": [], // nessun gioco disponibile
-        "B2": [
-          {id: 1, titolo: "Gioco", descrizione: "Trova il sinonimo corretto."}
-        ],
-        "C1": [], // nessun gioco disponibile
-        "C2": [
-          {id: 1, titolo: "Gioco", descrizione: "Individua l'errore."}
-        ]
+        "A1": [{id: 1, titolo: "Gioco", descrizione: "Trascina le parole per ricomporre le frasi."}],
+        "A2": [{id: 1, titolo: "Gioco", descrizione: "Inserisci l'articolo corretto."}],
+        "B1": [], 
+        "B2": [{id: 1, titolo: "Gioco", descrizione: "Trova il sinonimo corretto."}],
+        "C1": [], 
+        "C2": [{id: 1, titolo: "Gioco", descrizione: "Individua l'errore."}]
       };
 
       const giochi = giochiDisponibili[livello.toUpperCase()] || [];
 
       if (giochi.length === 0) {
-        gamesSection.innerHTML = `<p style="text-align:center; color:#666;">Nessun gioco disponibile per questo livello.</p>`;
+        gamesSection.innerHTML = `<p style="text-align:center; color:#666;">Nessun gioco disponibile per questa materia.</p>`;
       } else {
         gamesSection.innerHTML = giochi.map(g => `
           <a class="game-box" href="gioco.html?livello=${livello}&gioco=${g.id}">
