@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Italiano per livelli</title>
+  <title>Accademia di Italiano</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -15,7 +15,6 @@
     }
     .main-title {
       text-transform: uppercase;
-      font-weight: bold;
       letter-spacing: 2px;
       font-size: 1.6rem;
       margin: 0;
@@ -23,18 +22,10 @@
       text-align: center;
     }
     .top-bar {
-      padding-top: 0.7em;
-      padding-bottom: 0.7em;
+      font-weight: bold;
+      padding: 0.7em 0;
       min-height: 64px;
       background: #2a4d69;
-      transition: min-height 0.2s, padding 0.2s;
-    }
-    @media (max-width: 600px) {
-      .top-bar {
-        min-height: 48px;
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
-      }
     }
     .title-common {
       text-transform: uppercase;
@@ -44,156 +35,115 @@
       font-size: 1.6rem;
       margin: 0.5em 0 1em 0;
     }
-    .home-btn {
-      background: none;
-      border: none;
-      margin-left: 8px;
-      font-size: 1.5em;
-      cursor: pointer;
-      color: #2563eb;
-      display: none;
-      align-items: center;
-    }
-    .home-btn.visible {
-      display: flex;
-    }
     .levels-grid {
       display: flex;
       flex-direction: column;
       gap: 24px;
       align-items: center;
       margin-top: 24px;
+      padding-bottom: 40px;
     }
     .level-row {
       display: flex;
-      gap: 32px;
+      gap: 24px;
       justify-content: center;
+      flex-wrap: wrap;
     }
     .level-box {
       background: #ffffff;
-      padding: 32px 48px;
+      padding: 24px;
       border-radius: 14px;
       border: 2px solid #2563eb33;
-      font-size: 2.5rem; /* Aumentato per le icone */
-      color: #2563eb;
       text-decoration: none;
       box-shadow: 0 4px 18px rgba(37,99,235,0.08);
       transition: transform 0.12s, box-shadow 0.12s;
-      margin: 0 8px;
       display: flex;
+      flex-direction: column; /* Icona sopra, testo sotto */
       align-items: center;
       justify-content: center;
-      min-width: 140px; /* Larghezza minima per uniformità */
+      min-width: 140px;
+      gap: 12px;
     }
-    .level-box:hover, .level-box:focus {
+    .level-box i {
+      font-size: 2.5rem;
+      color: #2563eb;
+    }
+    .subject-name {
+      color: #2563eb;
+      font-weight: bold;
+      text-transform: uppercase; /* Stampatello */
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    .level-box:hover {
       background: #eef2ff;
       border-color: #2563eb;
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 8px 24px rgba(37,99,235,0.13);
-      outline: none;
     }
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      min-width: 0;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-    .header-center {
-      display: flex;
-      flex: 1 1 0%;
-      justify-content: center;
-      align-items: center;
-      min-width: 0;
-      z-index: 1;
-    }
-    .header-center h1 {
-      font-size: 1.6rem;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #fff;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-    .header-btn {
-      background: none;
-      border: none;
-      font-size: 1.6em;
-      cursor: pointer;
-      transition: transform 0.2s, color 0.3s;
-    }
-    .header-btn:hover {
-      transform: scale(1.2);
-    }
+    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 20px; }
+    .header-btn { background: none; border: none; font-size: 1.6em; cursor: pointer; color: #fff; }
     #trophy { color: #ffd700; }
-    #trophy:hover { color: #ffae00; }
     #user { color: #63ace5; }
-    #user:hover { color: #4b86b4; }
-    @media (max-width: 600px) {
-      .header-center h1 { font-size: 1.1rem; }
-      .level-box { padding: 24px 36px; min-width: 100px; }
-    }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <div class="header-row">
-      <div class="header-left">
-        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
-      </div>
-      <div class="header-center">
-        <h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1>
-      </div>
+      <div class="header-left"><button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button></div>
+      <div class="header-center"><h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1></div>
       <div class="header-right">
-        <button id="trophy" class="header-btn" title="Esercizi svolti" aria-label="Esercizi svolti">
-          <i class="fa-solid fa-trophy"></i>
-        </button>
-        <button id="user" class="header-btn" title="Accedi/Registrati" aria-label="Account">
-          <i class="fa-solid fa-user-circle"></i>
-        </button>
+        <button id="trophy" class="header-btn"><i class="fa-solid fa-trophy"></i></button>
+        <button id="user" class="header-btn"><i class="fa-solid fa-user-circle"></i></button>
       </div>
     </div>
   </header>
   <main>
     <section class="description">
-      <p class="desc-center">Benvenuto! Seleziona una materia per iniziare il tuo percorso di insieme a noi.</p>
+      <p class="desc-center">Benvenuto! Seleziona una materia per iniziare.</p>
     </section>
     <section class="levels">
       <div class="levels-grid">
         <div class="level-row">
           <a class="level-box" href="livello.html?livello=A1" title="Geografia">
             <i class="fa-solid fa-earth-americas"></i>
+            <span class="subject-name">Geografia</span>
           </a>
           <a class="level-box" href="livello.html?livello=A2" title="Matematica">
             <i class="fa-solid fa-calculator"></i>
+            <span class="subject-name">Matematica</span>
+          </a>
+          <a class="level-box" href="livello.html?livello=biologia" title="Biologia">
+            <i class="fa-solid fa-dna"></i>
+            <span class="subject-name">Biologia</span>
           </a>
         </div>
         <div class="level-row">
-          <a class="level-box" href="livello.html?livello=B1" title="Scienza">
-            <i class="fa-solid fa-atom"></i>
-          </a>
           <a class="level-box" href="livello.html?livello=B2" title="Italia">
             <i class="fa-solid fa-flag"></i>
+            <span class="subject-name">Italia</span>
           </a>
-        </div>
-        <div class="level-row">
           <a class="level-box" href="livello.html?livello=C1" title="Storia">
             <i class="fa-solid fa-landmark"></i>
+            <span class="subject-name">Storia</span>
           </a>
           <a class="level-box" href="livello.html?livello=C2" title="Tecnologia">
             <i class="fa-solid fa-desktop"></i>
+            <span class="subject-name">Tecnologia</span>
+          </a>
+        </div>
+        <div class="level-row">
+          <a class="level-box" href="livello.html?livello=inglese" title="Inglese">
+            <i class="fa-solid fa-language"></i>
+            <span class="subject-name">Inglese</span>
+          </a>
+          <a class="level-box" href="livello.html?livello=chimica" title="Chimica">
+            <i class="fa-solid fa-flask-vial"></i>
+            <span class="subject-name">Chimica</span>
+          </a>
+          <a class="level-box" href="livello.html?livello=fisica" title="Fisica">
+            <i class="fa-solid fa-atom"></i>
+            <span class="subject-name">Fisica</span>
           </a>
         </div>
       </div>
