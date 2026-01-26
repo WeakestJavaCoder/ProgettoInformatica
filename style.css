@@ -7,25 +7,183 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: #f4f6f9;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f3460 50%, #16213e 75%, #0d1b2a 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
   color: #333;
   line-height: 1.6;
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden; /* Blocca definitivamente lo scorrimento orizzontale */
+  position: relative;
+}
+
+/* Sfondo animato con elementi decorativi */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(99, 172, 229, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- LIQUID ART BACKGROUND --- */
+.liquid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  background: radial-gradient(circle at 30% 30%, rgba(99, 172, 229, 0.4), rgba(37, 99, 235, 0.1));
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+  animation: blob-animation-1 8s infinite ease-in-out;
+}
+
+.blob-2 {
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  right: -80px;
+  animation: blob-animation-2 7s infinite ease-in-out;
+  background: radial-gradient(circle at 30% 30%, rgba(65, 105, 225, 0.3), rgba(30, 58, 90, 0.05));
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  bottom: 10%;
+  left: 10%;
+  animation: blob-animation-3 9s infinite ease-in-out;
+  background: radial-gradient(circle at 30% 30%, rgba(79, 172, 254, 0.25), rgba(15, 52, 96, 0.05));
+}
+
+.blob-4 {
+  width: 380px;
+  height: 380px;
+  bottom: -150px;
+  right: 10%;
+  animation: blob-animation-4 10s infinite ease-in-out;
+  background: radial-gradient(circle at 30% 30%, rgba(99, 172, 229, 0.35), rgba(37, 99, 235, 0.08));
+}
+
+@keyframes blob-animation-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    transform: translate(50px, 30px) scale(1.1);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  75% {
+    border-radius: 70% 30% 60% 40% / 30% 60% 50% 70%;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+}
+
+@keyframes blob-animation-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    transform: translate(-30px, 50px) scale(0.95);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  75% {
+    border-radius: 70% 30% 60% 40% / 30% 60% 50% 70%;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+}
+
+@keyframes blob-animation-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.05);
+    border-radius: 70% 30% 60% 40% / 30% 60% 50% 70%;
+  }
+  75% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+@keyframes blob-animation-4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 70% 30% 60% 40% / 30% 60% 50% 70%;
+  }
+  50% {
+    transform: translate(-40px, 40px) scale(1.08);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  75% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
 }
 
 /* --- BARRA SUPERIORE (HEADER) --- */
 .top-bar {
-  background: linear-gradient(90deg, #2a4d69, #4b86b4);
+  background: linear-gradient(90deg, #1a2f4b, #2a4d69);
   color: #fff;
   padding: 0 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   width: 100%;
   height: 70px; /* Altezza fissa */
   display: flex;
   align-items: center;
   position: relative; /* Utile per il posizionamento */
+  z-index: 100;
 }
 
 .header-row {
@@ -91,11 +249,20 @@ body {
   max-width: 700px;
   text-align: center;
   font-size: 1.1em;
-  color: #444;
-  background: #fff;
+  color: #f0f9ff;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
   padding: 1.5em;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid rgba(99, 172, 229, 0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+}
+
+main {
+  position: relative;
+  z-index: 2;
 }
 
 /* --- BOX LIVELLI (MATERIE) UGUALI --- */
@@ -166,21 +333,23 @@ body {
 }
 
 .game-box {
-  background: #fff;
-  color: #333;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(10px);
+  color: #f0f9ff;
   padding: 2em;
   border-radius: 16px;
+  border: 1px solid rgba(99, 172, 229, 0.2);
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease;
   position: relative;
 }
 
 .game-box h2 {
   margin-bottom: 0.5em;
   font-size: 1.3rem;
-  color: #2a4d69;
+  color: #63ace5;
 }
 
 .game-box::before {
@@ -195,6 +364,8 @@ body {
 
 .game-box:hover {
   transform: translateY(-6px);
+  border-color: rgba(99, 172, 229, 0.5);
+  box-shadow: 0 12px 40px rgba(99, 172, 229, 0.15);
 }
 
 /* --- TITOLI E PULSANTI NAVIGAZIONE --- */
