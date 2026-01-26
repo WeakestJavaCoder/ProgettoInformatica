@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Accademia di Italiano</title>
+  <title>Infinity School</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -12,20 +12,6 @@
       margin: 0 auto 18px auto;
       display: block;
       font-size: 1.15rem;
-    }
-    .main-title {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 1.6rem;
-      margin: 0;
-      flex-grow: 1;
-      text-align: center;
-    }
-    .top-bar {
-      font-weight: bold;
-      padding: 0.7em 0;
-      min-height: 64px;
-      background: #2a4d69;
     }
     .title-common {
       text-transform: uppercase;
@@ -81,20 +67,26 @@
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 8px 24px rgba(37,99,235,0.13);
     }
-    .header-row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 20px; }
-    .header-btn { background: none; border: none; font-size: 1.6em; cursor: pointer; color: #fff; }
-    #trophy { color: #ffd700; }
-    #user { color: #63ace5; }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <div class="header-row">
-      <div class="header-left"><button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button></div>
-      <div class="header-center"><h1 class="main-title title-common">ACCADEMIA DI ITALIANO</h1></div>
+      <div class="header-left">
+        <button id="hamburger" class="header-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Infinity School</h1>
+      </div>
       <div class="header-right">
-        <button id="trophy" class="header-btn"><i class="fa-solid fa-trophy"></i></button>
-        <button id="user" class="header-btn"><i class="fa-solid fa-user-circle"></i></button>
+        <button id="trophy" class="header-btn" title="Esercizi">
+          <i class="fa-solid fa-trophy"></i>
+        </button>
+        <button id="user" class="header-btn" title="Profilo">
+          <i class="fa-solid fa-user-circle"></i>
+        </button>
       </div>
     </div>
   </header>
@@ -119,9 +111,9 @@
           </a>
         </div>
         <div class="level-row">
-          <a class="level-box" href="livello.html?livello=B2" title="Italia">
+          <a class="level-box" href="livello.html?livello=B2" title="Italiano">
             <i class="fa-solid fa-flag"></i>
-            <span class="subject-name">Italia</span>
+            <span class="subject-name">Italiano</span>
           </a>
           <a class="level-box" href="livello.html?livello=C1" title="Storia">
             <i class="fa-solid fa-landmark"></i>
