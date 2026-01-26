@@ -1,193 +1,122 @@
-/* Base */
-body {
+/* --- RESET E SICUREZZA LAYOUT --- */
+* {
+  box-sizing: border-box; /* Impedisce al padding di allargare gli elementi */
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* Blocca lo scorrimento orizzontale */
   margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
   background: #f4f6f9;
   color: #333;
-  line-height: 1.6;
 }
 
-/* Barra superiore */
+/* --- BARRA SUPERIORE --- */
 .top-bar {
-  background: linear-gradient(90deg, #2a4d69, #4b86b4);
+  background: #2a4d69; /* Colore solido per evitare stacchi */
   color: #fff;
-  padding: 0.7em 1.5em;
+  padding: 0.7em 0;
+  width: 100%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  min-height: 64px;
 }
+
 .header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding: 0 20px; /* Spazio interno di sicurezza */
+  max-width: 1200px; /* Opzionale: centra il contenuto su schermi giganti */
+  margin: 0 auto;
 }
-.header-center h1 {
-  font-size: 1.6rem;
-  margin: 0;
+
+.main-title {
   text-transform: uppercase;
+  font-weight: bold;
   letter-spacing: 2px;
+  font-size: 1.4rem;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  flex: 1;
 }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 10px; /* Sposta le icone più a sinistra per sicurezza */
+}
+
 .header-btn {
   background: none;
   border: none;
-  font-size: 1.6em;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: transform 0.2s, color 0.3s;
   color: #fff;
+  padding: 5px;
+  transition: transform 0.2s;
 }
+
 .header-btn:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
-/* Icone */
-#trophy {
-  color: #ffd700;
-}
-#trophy:hover {
-  color: #ffae00;
-}
-#user {
-  color: #63ace5;
-}
-#user:hover {
-  color: #4b86b4;
-}
+#trophy { color: #ffd700; }
+#user { color: #63ace5; }
 
-/* Sezione descrizione */
-.description {
-  margin: 2em auto 1em auto;
-  max-width: 700px;
-  text-align: center;
-  font-size: 1.2em;
-  color: #444;
-  background: #fff;
-  padding: 1.5em;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-.desc-center {
-  margin: 0;
-}
-
-/* Box livelli */
+/* --- GRIGLIA MATERIE E LIVELLI --- */
 .levels-grid {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: center;
   margin-top: 24px;
+  padding-bottom: 40px;
 }
+
 .level-row {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   justify-content: center;
+  flex-wrap: wrap;
 }
+
 .level-box {
-  background: linear-gradient(135deg, #4b86b4, #2a4d69);
-  color: #fff;
-  padding: 32px 48px;
+  background: #ffffff;
+  padding: 24px;
   border-radius: 14px;
-  font-size: 2rem;
-  font-weight: 600;
+  border: 2px solid #2563eb33;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-}
-.level-box:hover {
-  background: linear-gradient(135deg, #2a4d69, #1e3c5a);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
-
-/* Sezione giochi */
-.games {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2em;
-  padding: 2em;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.game-box {
-  background: #fff;
-  color: #333;
-  padding: 2em;
-  border-radius: 16px;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.game-box h2 {
-  margin-bottom: 0.5em;
-  font-size: 1.4rem;
-  color: #2a4d69;
-}
-.game-box p {
-  font-size: 1rem;
-  opacity: 0.8;
+  box-shadow: 0 4px 18px rgba(37,99,235,0.08);
+  transition: transform 0.12s, box-shadow 0.12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  gap: 12px;
 }
 
-/* Icona decorativa per i giochi */
-.game-box::before {
-  content: "\f1e2"; /* icona puzzle di Font Awesome */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 2.5em;
-  color: #63ace5;
-  display: block;
-  margin-bottom: 0.5em;
-}
-
-/* Hover animato */
-.game-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-.game-box:hover::before {
+.level-box i {
+  font-size: 2.5rem;
   color: #2563eb;
-  transform: rotate(15deg);
-  transition: transform 0.3s, color 0.3s;
 }
 
-/* Titolo livello */
-#level-title {
-  text-align: center;
-  margin: 1.5em 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #2a4d69;
+.subject-name {
+  color: #2563eb;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
-/* Pulsante indietro */
-#back-btn {
-  display: block;
-  margin: 0 auto 1.5em auto;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  padding: 0.6em 1.2em;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s, transform 0.2s;
-}
-#back-btn:hover {
-  background: #1e40af;
-  transform: translateY(-2px);
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .header-center h1 {
-    font-size: 1.2rem;
-  }
-  .level-row {
-    flex-direction: column;
-    gap: 16px;
-  }
-  .level-box {
-    width: 80%;
-    text-align: center;
-  }
+.level-box:hover {
+  background: #eef2ff;
+  border-color: #2563eb;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.13);
 }
