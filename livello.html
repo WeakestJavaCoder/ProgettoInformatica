@@ -2,221 +2,111 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Livello</title>
-
+  <title>Livello - Accademia</title>
   <link rel="stylesheet" href="style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    .top-bar {
-      padding-top: 0.7em;
-      padding-bottom: 0.7em;
-      min-height: 64px;
-      background: #2a4d69;
-      transition: min-height 0.2s, padding 0.2s;
-    }
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-center {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .main-title {
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 2px;
-      font-size: 1.6rem;
-      margin: 0;
-      text-align: center;
-      color: #fff;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
     .level-header {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 1.2em auto;
+      margin: 20px auto;
       max-width: 900px;
-      padding: 0 16px;
-      min-height: 40px;
-      flex-direction: column; /* per impilare titolo e giochi */
+      padding: 0 15px;
     }
     #back-btn {
       position: absolute;
-      left: 16px;
-      top: 10%;
-      transform: translateY(-50%);
-      background: none;
+      left: 15px;
+      top: 0;
+      background: #eef2ff;
       border: none;
       color: #2a4d69;
       font-size: 1.2rem;
       cursor: pointer;
-      padding: 6px 10px;
-      border-radius: 6px;
-      transition: color 0.2s, transform 0.2s, background 0.2s;
+      padding: 8px 12px;
+      border-radius: 50%;
+      transition: all 0.2s;
     }
-    #back-btn:hover {
-      color: #1e3a5f;
-      background: #eef2ff;
-      transform: translateY(-50%) translateY(-1px);
-    }
+    #back-btn:hover { background: #2563eb; color: #fff; }
     #level-title {
-      margin: 0 0 1em 0;
+      margin-top: 40px;
       font-size: 1.4rem;
-      font-weight: 600;
-      color: #2563eb; /* Colore blu del gioco */
-      text-align: center;
+      color: #2563eb;
       text-transform: uppercase;
     }
-
     .games {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 20px;
       width: 100%;
-      max-width: 900px;
+      margin-top: 20px;
     }
     .game-box {
-      display: block;
-      padding: 1.2em;
-      background: #f0f4f8;
-      border-radius: 8px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
       text-decoration: none;
-      color: #2a4d69;
-      transition: transform 0.2s, box-shadow 0.2s;
+      color: #333;
+      transition: 0.2s;
     }
-    .game-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    @media (max-width: 600px) {
-      .top-bar {
-        min-height: 48px;
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
-      }
-      .main-title {
-        font-size: 1.1rem;
-      }
-      #level-title {
-        font-size: 1.2rem;
-      }
-      #back-btn {
-        left: 12px;
-      }
-    }
+    .game-box:hover { border-color: #2563eb; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars" style="color:#fff;"></i></button>
+        <button id="hamburger" class="header-btn"><i class="fa-solid fa-bars"></i></button>
       </div>
       <div class="header-center">
         <h1 class="main-title">Accademia di Italiano</h1>
       </div>
       <div class="header-right">
-        <button id="trophy" class="header-btn" title="Esercizi svolti">
-          <i class="fa-solid fa-trophy" style="color:#ffd700;"></i>
-        </button>
-        <button id="user" class="header-btn" title="Accedi/Registrati">
-          <i class="fa-solid fa-user-circle" style="color:#63ace5;"></i>
-        </button>
+        <button id="trophy" class="header-btn"><i class="fa-solid fa-trophy"></i></button>
+        <button id="user" class="header-btn"><i class="fa-solid fa-user-circle"></i></button>
       </div>
     </div>
   </header>
 
   <main>
     <div class="level-header">
-      <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
-        <i class="fa-solid fa-arrow-left"></i>
-      </button>
-      <h2 id="level-title">MATERIA SCELTA: </h2>
-
-      <section class="games" id="games-section">
-      </section>
+      <button id="back-btn" title="Torna alla Home"><i class="fa-solid fa-arrow-left"></i></button>
+      <h2 id="level-title">CARICAMENTO...</h2>
+      <section class="games" id="games-section"></section>
     </div>
   </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const titoloElement = document.getElementById('level-title');
       const livello = params.get('livello') || '';
-
-      // Mappa per trasformare il codice in nome materia
       const nomiMaterie = {
-        "A1": "GEOGRAFIA",
-        "A2": "MATEMATICA",
-        "BIOLOGIA": "BIOLOGIA",
-        "B1": "SCIENZA",
-        "B2": "ITALIA",
-        "C1": "STORIA",
-        "C2": "TECNOLOGIA",
-        "INGLESE": "INGLESE",
-        "CHIMICA": "CHIMICA",
-        "FISICA": "FISICA"
+        "A1": "GEOGRAFIA", "A2": "MATEMATICA", "BIOLOGIA": "BIOLOGIA",
+        "B2": "ITALIANO", "C1": "STORIA", "C2": "TECNOLOGIA"
       };
-
       const materiaNome = nomiMaterie[livello.toUpperCase()] || livello.toUpperCase();
+      document.getElementById('level-title').textContent = `MATERIA: ${materiaNome}`;
+      
+      document.getElementById('back-btn').onclick = () => window.location.href = 'index.html';
 
-      if (titoloElement) {
-        // Applica la modifica richiesta
-        titoloElement.textContent = `MATERIA SCELTA: ${materiaNome}`;
-      }
-
-      const backBtn = document.getElementById('back-btn');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => {
-          window.location.href = 'index.html';
-        });
-      }
-
-      const gamesSection = document.getElementById('games-section');
-
-      // Configurazione originale dei giochi
       const giochiDisponibili = {
-        "A1": [{id: 1, titolo: "Gioco", descrizione: "Trascina le parole per ricomporre le frasi."}],
-        "A2": [{id: 1, titolo: "Gioco", descrizione: "Inserisci l'articolo corretto."}],
-        "B1": [], 
-        "B2": [{id: 1, titolo: "Gioco", descrizione: "Trova il sinonimo corretto."}],
-        "C1": [], 
-        "C2": [{id: 1, titolo: "Gioco", descrizione: "Individua l'errore."}]
+        "A1": [{id: 1, titolo: "Quiz Geografia", descrizione: "Testa le tue conoscenze."}],
+        "B2": [{id: 1, titolo: "Grammatica", descrizione: "Trova l'errore."}]
       };
-
+      
+      const gamesSection = document.getElementById('games-section');
       const giochi = giochiDisponibili[livello.toUpperCase()] || [];
-
       if (giochi.length === 0) {
-        gamesSection.innerHTML = `<p style="text-align:center; color:#666;">Nessun gioco disponibile per questa materia.</p>`;
+        gamesSection.innerHTML = `<p>Nessun gioco disponibile al momento.</p>`;
       } else {
         gamesSection.innerHTML = giochi.map(g => `
           <a class="game-box" href="gioco.html?livello=${livello}&gioco=${g.id}">
-            <h2>${g.titolo}</h2>
+            <h3>${g.titolo}</h3>
             <p>${g.descrizione}</p>
-          </a>
-        `).join('');
+          </a>`).join('');
       }
     });
   </script>
