@@ -1,111 +1,170 @@
-/* Base */
+/* --- RESET E BASE --- */
+* {
+  box-sizing: border-box; /* Essenziale: include padding e bordi nel calcolo della larghezza */
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
   background: #f4f6f9;
   color: #333;
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* Blocca definitivamente lo scorrimento orizzontale */
 }
 
-/* Barra superiore */
+/* --- BARRA SUPERIORE (HEADER) --- */
 .top-bar {
   background: linear-gradient(90deg, #2a4d69, #4b86b4);
   color: #fff;
-  padding: 0.7em 1.5em;
+  padding: 0 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  width: 100%;
+  height: 70px; /* Altezza fissa */
+  display: flex;
+  align-items: center;
+  position: relative; /* Utile per il posizionamento */
 }
+
 .header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%; /* Si espande agli estremi */
+  margin: 0;
 }
-.header-center h1 {
+
+/* Forziamo i lati ad avere la stessa larghezza per "spingere" il titolo al centro esatto */
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1; /* Entrambi i lati occupano lo stesso spazio */
+}
+
+.header-right {
+  justify-content: flex-end; /* Icone a destra verso il bordo */
+}
+
+.header-center {
+  flex: 2; /* Più spazio al titolo */
+  text-align: center;
+}
+
+.main-title {
   font-size: 1.6rem;
   margin: 0;
-  text-transform: uppercase;
+  text-transform: uppercase; /* FORZA IL MAIUSCOLO */
+  font-weight: 700;
   letter-spacing: 2px;
+  white-space: nowrap; /* Non va mai a capo */
+  color: #ffffff;
 }
+
 .header-btn {
   background: none;
   border: none;
   font-size: 1.6em;
   cursor: pointer;
-  transition: transform 0.2s, color 0.3s;
   color: #fff;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
 }
+
 .header-btn:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
-/* Icone */
-#trophy {
-  color: #ffd700;
-}
-#trophy:hover {
-  color: #ffae00;
-}
-#user {
-  color: #63ace5;
-}
-#user:hover {
-  color: #4b86b4;
-}
+/* Colori Icone */
+#trophy { color: #ffd700; }
+#trophy:hover { color: #ffae00; }
+#user { color: #63ace5; }
+#user:hover { color: #4b86b4; }
 
-/* Sezione descrizione */
-.description {
+/* --- SEZIONE DESCRIZIONE --- */
+.description, .description-box {
   margin: 2em auto 1em auto;
   max-width: 700px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #444;
   background: #fff;
   padding: 1.5em;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-.desc-center {
-  margin: 0;
-}
 
-/* Box livelli */
+/* --- BOX LIVELLI (MATERIE) UGUALI --- */
 .levels-grid {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 30px;
+  padding-bottom: 50px;
 }
+
 .level-row {
   display: flex;
-  gap: 32px;
+  gap: 20px;
   justify-content: center;
+  flex-wrap: wrap; /* Permette di andare a capo se lo schermo è piccolo */
+  width: 100%;
+  max-width: 1000px;
 }
+
 .level-box {
   background: linear-gradient(135deg, #4b86b4, #2a4d69);
   color: #fff;
-  padding: 32px 48px;
-  border-radius: 14px;
-  font-size: 2rem;
-  font-weight: 600;
+  
+  /* Queste proprietà rendono i box tutti uguali */
+  width: 200px;        /* Larghezza fissa */
+  height: 180px;       /* Altezza fissa */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  border-radius: 16px;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-}
-.level-box:hover {
-  background: linear-gradient(135deg, #2a4d69, #1e3c5a);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.25s, box-shadow 0.25s;
+  padding: 15px;
 }
 
-/* Sezione giochi */
+.level-box i {
+  font-size: 2.5rem;   /* Dimensione icona fissa */
+  margin-bottom: 15px;
+}
+
+.level-box .subject-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.level-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #2a4d69, #1e3c5a);
+}
+
+/* --- SEZIONE GIOCHI --- */
 .games {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2em;
   padding: 2em;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
+
 .game-box {
   background: #fff;
   color: #333;
@@ -114,80 +173,95 @@ body {
   text-align: center;
   text-decoration: none;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   position: relative;
-  overflow: hidden;
 }
+
 .game-box h2 {
   margin-bottom: 0.5em;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #2a4d69;
 }
-.game-box p {
-  font-size: 1rem;
-  opacity: 0.8;
-}
 
-/* Icona decorativa per i giochi */
 .game-box::before {
-  content: "\f1e2"; /* icona puzzle di Font Awesome */
+  content: "\f1e2";
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  font-size: 2.5em;
+  font-size: 2.2em;
   color: #63ace5;
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 10px;
 }
 
-/* Hover animato */
 .game-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-.game-box:hover::before {
-  color: #2563eb;
-  transform: rotate(15deg);
-  transition: transform 0.3s, color 0.3s;
 }
 
-/* Titolo livello */
+/* --- TITOLI E PULSANTI NAVIGAZIONE --- */
+.level-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 #level-title {
-  text-align: center;
-  margin: 1.5em 0;
   font-size: 1.4rem;
   font-weight: 600;
   color: #2a4d69;
+  margin: 0;
 }
 
-/* Pulsante indietro */
 #back-btn {
-  display: block;
-  margin: 0 auto 1.5em auto;
+  position: absolute;
+  left: 20px;
   background: #2563eb;
   color: #fff;
   border: none;
-  padding: 0.6em 1.2em;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s, transform 0.2s;
-}
-#back-btn:hover {
-  background: #1e40af;
-  transform: translateY(-2px);
+  transition: background 0.3s;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+#back-btn:hover {
+  background: #1e40af;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
   .header-center h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
-  .level-row {
+  
+  .header-left, .header-right {
+    flex: 0 0 60px; /* Riduce lo spazio laterale su schermi piccoli */
+  }
+
+  #back-btn {
+    position: static; /* Rende il pulsante parte del flusso normale su mobile */
+    margin-bottom: 15px;
+  }
+
+  .level-header {
     flex-direction: column;
-    gap: 16px;
   }
+}
+
+/* --- ADATTAMENTO MOBILE --- */
+@media (max-width: 600px) {
   .level-box {
-    width: 80%;
-    text-align: center;
+    width: 140px;      /* Più piccoli sui telefoni */
+    height: 130px;
+  }
+  .level-box i {
+    font-size: 1.8rem;
+  }
+  .level-box .subject-name {
+    font-size: 0.9rem;
   }
 }
