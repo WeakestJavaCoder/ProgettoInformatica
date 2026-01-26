@@ -2,11 +2,9 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Gioco</title>
+<title>Gioco - Infinity School</title>
 <style>
 body { margin:0; font-family:sans-serif; background:#f7f7f7; }
-.top-bar { display:flex; align-items:center; justify-content:space-between; background:#2a4d69; color:#fff; padding:0.7em 1em; }
-.top-bar button { background:none; border:none; color:#fff; font-size:1.5em; cursor:pointer; }
 
 .game-container { max-width:700px; margin:2em auto; background:#fff; border-radius:12px; padding:25px; box-shadow:0 2px 8px #0001; }
 #question, #questionA2, #questionB2, #questionC2 { font-size:1.5rem; text-align:center; margin-bottom:20px; }
@@ -28,9 +26,24 @@ body { margin:0; font-family:sans-serif; background:#f7f7f7; }
 <body>
 
 <header class="top-bar">
-    <button id="back-btn">&#8592;</button>
-    <h1 id="pageTitle">Gioco</h1>
-    <div></div>
+  <div class="header-row">
+    <div class="header-left">
+      <button id="hamburger" class="header-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div class="header-center">
+      <h1 class="main-title">Infinity School</h1>
+    </div>
+    <div class="header-right">
+      <button id="trophy" class="header-btn" title="Esercizi">
+        <i class="fa-solid fa-trophy"></i>
+      </button>
+      <button id="user" class="header-btn" title="Profilo">
+        <i class="fa-solid fa-user-circle"></i>
+      </button>
+    </div>
+  </div>
 </header>
 
 <!-- A1 Gioco 1: Trascina parole con 4 frasi -->
