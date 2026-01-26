@@ -11,31 +11,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
-  <title>Login / Registrazione</title>
+  <title>Login / Registrazione - Infinity School</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .top-bar {
-      padding-top: 0.7em;
-      padding-bottom: 0.7em;
-      min-height: 64px;
-      background: #2a4d69;
-    }
-
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; /* allinea a sinistra */
-      width: 100%;
-      background: #2a4d69;
-      padding: 0.2em 1em;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
-
     .back-arrow {
       color: #fff;
       font-size: 1.2rem;
@@ -165,9 +144,20 @@
   <header class="top-bar">
     <div class="header-row">
       <div class="header-left">
-        <a href="javascript:history.back()" class="back-arrow">
-          <i class="fas fa-arrow-left"></i>
-        </a>
+        <button id="hamburger" class="header-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Infinity School</h1>
+      </div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi">
+          <i class="fa-solid fa-trophy"></i>
+        </button>
+        <button id="user" class="header-btn" title="Profilo">
+          <i class="fa-solid fa-user-circle"></i>
+        </button>
       </div>
     </div>
   </header>
