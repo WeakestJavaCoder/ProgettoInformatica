@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Foglio di stile comune -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Font Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome per le icone -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
@@ -74,7 +71,6 @@
     </div>
   </header>
 
-  <!-- Freccia e titolo centrato -->
   <div class="level-header">
     <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
       <i class="fa-solid fa-arrow-left"></i>
@@ -84,16 +80,17 @@
 
   <main>
     <section class="esercizi-section" id="esercizi-list">
-      <!-- Qui verranno mostrati gli esercizi svolti -->
-    </section>
+      </section>
   </main>
 
   <script src="script.js"></script>
   <script>
+    // Aspetta che il contenuto del DOM sia completamente caricato
     document.addEventListener('DOMContentLoaded', () => {
-      const backBtn = document.getElementById('back-btn');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => {
+      const pulsanteIndietro = document.getElementById('back-btn');
+      if (pulsanteIndietro) {
+        pulsanteIndietro.addEventListener('click', () => {
+          // Reindirizza l'utente alla pagina principale (Home)
           window.location.href = 'index.html';
         });
       }
