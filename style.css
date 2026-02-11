@@ -1,3 +1,19 @@
+/* Mini menu logout */
+#logout-menu {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  background: #fff;
+  color: #222;
+  border: 1px solid #e6edf3;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 120px;
+  z-index: 1000;
+}
+#logout-btn:hover {
+  background: #f0f4f8;
+}
 /* --- RESET E BASE --- */
 * {
   box-sizing: border-box; /* Essenziale: include padding e bordi nel calcolo della larghezza */
