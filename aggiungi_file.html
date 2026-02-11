@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta charset="UTF-8">
+  <title>Aggiungi file - Infinity School</title>
+  <style>
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
+    /* Stile per il form */
+    .upload-form {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+    }
+    .upload-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      border-radius: 16px 16px 0 0;
+    }
+    .upload-form h3 {
+      margin-top: 0;
+      color: #2a4d69;
+      font-size: 1.5rem;
+    }
+    .upload-form p {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    .upload-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #374151;
+    }
+    .upload-form input[type="file"] {
+      margin: 20px 0;
+      padding: 12px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .upload-form input[type="file"]:hover {
+      border-color: #2563eb;
+      background: #eef2ff;
+    }
+    .upload-form button {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 20px;
+    }
+    .upload-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+    .upload-form button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Infinity School</h1>
+      </div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi">
+          <i class="fa-solid fa-trophy"></i>
+        </button>
+        <button id="user" class="header-btn" title="Profilo">
+          <i class="fa-solid fa-user-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="level-header">
+    <button id="back-btn" title="Torna alle Risorse" aria-label="Torna alle Risorse">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Aggiungi file</h2>
+  </div>
+
+  <main style="padding:32px;text-align:center;">
+    <div class="upload-form">
+      <h3>Carica un nuovo file</h3>
+      <p>Seleziona un file dal tuo dispositivo per aggiungerlo alle risorse. Supporta formati comuni come PDF, DOC, immagini, ecc.</p>
+      <form action="#" method="post" enctype="multipart/form-data">
+        <label for="file">Scegli il file da caricare:</label>
+        <input type="file" name="file" id="file" required>
+        <br>
+        <button type="submit">
+          <i class="fa-solid fa-upload"></i> Carica file
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Aspetta che il documento sia caricato
+    document.addEventListener('DOMContentLoaded', function () {
+      const pulsanteIndietro = document.getElementById('back-btn');
+      if (pulsanteIndietro) {
+        pulsanteIndietro.addEventListener('click', function () {
+          // Ritorna alla pagina risorse
+          window.location.href = 'risorse.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
