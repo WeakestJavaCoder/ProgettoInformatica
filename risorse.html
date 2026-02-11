@@ -1,60 +1,169 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Foglio di stile comune -->
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-<!-- Font Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome per le icone -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <meta charset="UTF-8">
   <title>Risorse - Infinity School</title>
-  <link rel="stylesheet" href="style.css">
   <style>
+    /* Riga del livello: freccia a sinistra e titolo centrato */
+    .level-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2em auto;
+      max-width: 900px;
+      padding: 0 16px;
+      min-height: 40px;
+    }
+    #back-btn {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #2a4d69;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.2s, transform 0.2s, background 0.2s;
+    }
+    #back-btn:hover {
+      color: #1e3a5f;
+      background: #eef2ff;
+      transform: translateY(-50%) translateY(-1px);
+    }
+    #level-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a4d69;
+      text-align: center;
+    }
+    #add-file {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #add-file:hover {
+      background: #1d4ed8;
+      transform: translateY(-50%) translateY(-1px);
+    }
   </style>
 </head>
 <body>
-<header class="top-bar">
-  <div class="header-row">
-    <div class="header-left">
-      <button id="hamburger" class="header-btn">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+  <header class="top-bar">
+    <div class="header-row">
+      <div class="header-left">
+        <button id="hamburger" class="header-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="main-title">Infinity School</h1>
+      </div>
+      <div class="header-right">
+        <button id="trophy" class="header-btn" title="Esercizi">
+          <i class="fa-solid fa-trophy"></i>
+        </button>
+        <button id="user" class="header-btn" title="Profilo">
+          <i class="fa-solid fa-user-circle"></i>
+        </button>
+      </div>
     </div>
-    <div class="header-center">
-      <h1 class="main-title">Infinity School</h1>
-    </div>
-    <div class="header-right">
-      <button id="trophy" class="header-btn" title="Esercizi">
-        <i class="fa-solid fa-trophy"></i>
-      </button>
-      <button id="user" class="header-btn" title="Profilo">
-        <i class="fa-solid fa-user-circle"></i>
-      </button>
-    </div>
-  </div>
-</header>
+  </header>
 
-<main style="padding:16px">
-  <h2>Materiali e risorse</h2>
-  <p>Qui puoi inserire link utili, schede, e materiale per lo studio: esercizi, grammatica, fogli di lavoro e collegamenti esterni.</p>
-  <ul>
-    <li><a href="grammatica.html">Regole di grammatica</a></li>
-    <li><a href="sfida.html">Sfida del giorno</a></li>
-    <li><a href="lingua.html">Lingua dell'interfaccia</a></li>
-    <li><a href="supporto.html">Supporto</a></li>
-  </ul>
-</main>
-<script src="script.js"></script>
-<script>
-  // back button torna alla home
-  document.getElementById('back-btn').addEventListener('click', function() {
-    window.location.href = 'index.html';
-  });
-</script>
+  <div class="level-header">
+    <button id="back-btn" title="Torna alla Home" aria-label="Torna alla Home">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <h2 id="level-title">Risorse</h2>
+    <button id="add-file" title="Aggiungi file" aria-label="Aggiungi file">
+      <i class="fa-solid fa-plus"></i> Aggiungi file
+    </button>
+  </div>
+
+  <main style="padding:32px;text-align:center;">
+    
+    <div class="info-card" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #fff; border-radius: 16px; border: 1px solid #e6edf3;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 48px; height: 48px; background: #e8f2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+          📚
+        </div>
+        <div>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Grammatica Avanzata</h3>
+          <p style="margin: 4px 0 0; font-size: 14px; color: #666;">Approfondimenti sulle regole complesse.</p>
+        </div>
+      </div>
+      <span style="color: #ccc; font-size: 20px;">›</span>
+    </div>
+
+    <div class="info-card" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #fff; border-radius: 16px; border: 1px solid #e6edf3;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 48px; height: 48px; background: #f0fff4; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+          📖
+        </div>
+        <div>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Vocabolario</h3>
+          <p style="margin: 4px 0 0; font-size: 14px; color: #666;">Liste di parole divise per argomenti e livelli.</p>
+        </div>
+      </div>
+      <span style="color: #ccc; font-size: 20px;">›</span>
+    </div>
+
+    <div class="info-card" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: #fff; border-radius: 16px; border: 1px solid #e6edf3;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 48px; height: 48px; background: #fff5f5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+          ✍️
+        </div>
+        <div>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600;">Esercizi Extra</h3>
+          <p style="margin: 4px 0 0; font-size: 14px; color: #666;">Materiale aggiuntivo per fare pratica.</p>
+        </div>
+      </div>
+      <span style="color: #ccc; font-size: 20px;">›</span>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Aspetta che il documento sia caricato
+    document.addEventListener('DOMContentLoaded', function () {
+      const pulsanteIndietro = document.getElementById('back-btn');
+      if (pulsanteIndietro) {
+        pulsanteIndietro.addEventListener('click', function () {
+          // Ritorna alla pagina principale
+          window.location.href = 'index.html';
+        });
+      }
+      const addFileBtn = document.getElementById('add-file');
+      if (addFileBtn) {
+        addFileBtn.addEventListener('click', function () {
+          window.location.href = 'aggiungi-file.html';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
